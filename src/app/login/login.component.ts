@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { first } from 'rxjs/operators';
 import { AuthService } from '../_services/auth.service';
-import { TokenStorageService } from '../_services/token-storage.service';
+import {TokenStorageService} from '../_services/token-storage.service'
+
 
 @Component({
   selector: 'app-login',
@@ -8,42 +12,61 @@ import { TokenStorageService } from '../_services/token-storage.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  form: any = {};
-  isLoggedIn = false;
-  isLoginFailed = false;
-  errorMessage = '';
-  roles: string[] = [];
+    loginForm: FormGroup;
+    loading = false;
+    submitted = false;
+    returnUrl: string;
+    error = '';
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
-
-  ngOnInit() {
-    if (this.tokenStorage.getToken()) {
-      this.isLoggedIn = true;
-      this.roles = this.tokenStorage.getUser().roles;
+    constructor(
+        private formBuilder: FormBuilder,
+        private route: ActivatedRoute,
+        private router: Router,
+        private authenticationService: AuthService,
+        private tockenstorage : TokenStorageService
+    ) { 
+        // redirect to home if already logged in
+        if (this.tockenstorage.getToken()) { 
+            this.router.navigate(['/']);
+        }
     }
-  }
 
-  onSubmit() {
-    this.authService.login(this.form).subscribe(
-      data => {
-        console.log(data);
-        let jwt = data.headers.get('Authorization');
-        this.tokenStorage.saveToken(jwt);
-        this.tokenStorage.saveUser(data);
+    ngOnInit() {
+        this.loginForm = this.formBuilder.group({
+            username: ['', Validators.required],
+            password: ['', Validators.required]
+        });
 
-        this.isLoginFailed = false;
-        this.isLoggedIn = true;
-        this.roles = this.tokenStorage.getUser().roles;
-        this.reloadPage();
-      },
-      err => {
-        this.errorMessage = err.error.message;
-        this.isLoginFailed = true;
-      }
-    );
-  }
+        // get return url from route parameters or default to '/'
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    }
 
-  reloadPage() {
-    window.location.reload();
-  }
+    // convenience getter for easy access to form fields
+    get f() { return this.loginForm.controls; }
+
+    onSubmit() {
+        this.submitted = true;
+
+        // stop here if form is invalid
+        if (this.loginForm.invalid) {
+            return;
+        }
+
+        this.loading = true;
+        this.authenticationService.login(this.loginForm.value)
+            .pipe(first())
+            .subscribe(
+                data => {
+                  let jwt=data.headers.get('Authorization');
+                  this.tockenstorage.saveToken(jwt);
+                  this.router.navigateByUrl('');
+                  
+                },
+                error => {
+                    this.error = error;
+                    this.loading = false;
+                });
+    }
 }
+
+

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { AuthService} from '../_services/auth.service'
 // import custom validator to validate that password and confirm password fields match
 
 
@@ -13,28 +13,24 @@ export class RegisterComponent implements OnInit {
     registerForm: FormGroup;
     submitted = false;
 
-    constructor(private formBuilder: FormBuilder) { }
+    constructor(private formBuilder: FormBuilder,private AuthService: AuthService) { }
 
     ngOnInit() {
         this.registerForm = this.formBuilder.group({
-            title: ['', Validators.required],
-            firstName: ['', Validators.required],
-            lastName: ['', Validators.required],
-            email: ['', [Validators.required, Validators.email]],
+            username:['',Validators.required],
             password: ['', [Validators.required, Validators.minLength(6)]],
-            confirmPassword: ['', Validators.required],
-            acceptTerms: [false, Validators.requiredTrue]
+            confirmedPassword: ['', Validators.required],
         }, {
           //  validator: MustMatch('password', 'confirmPassword')
         });
     }
 
     // convenience getter for easy access to form fields
-    get f() { return this.registerForm.controls; }
+    getf () { return this.registerForm.controls; }
 
     onSubmit() {
         this.submitted = true;
-
+        this.AuthService.register(this.registerForm.value);
         // stop here if form is invalid
         if (this.registerForm.invalid) {
             return;
