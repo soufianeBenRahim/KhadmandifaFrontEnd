@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
             confirmedPassword:  ['', [Validators.required, Validators.minLength(6)]],
             typeUser: ['', Validators.required],
         }, {
-            //validator: MustMatch('password', 'confirmPassword')
+           // validator: MustMatch('password', 'confirmPassword')
         });
     }
 
@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
 
     onSubmit() {
         if (this.registerForm.invalid) {
-            alert('donnees invalides!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
+            alert('donnees invalides!! :-)');
             return;
         }
         this.submitted = true;
@@ -51,7 +51,7 @@ export class RegisterComponent implements OnInit {
 
 
         // display form values on success
-        alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
+        alert('SUCCESS!! :-)');
     }
 
     onReset() {
