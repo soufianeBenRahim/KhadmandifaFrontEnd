@@ -3,7 +3,16 @@
   <h5 class="card-header">Formulaire d'enregistrement</h5>
   <div class="card-body">
       <form  [formGroup]="registerForm"  #f (ngSubmit)="onSubmit(f.data)">
-          <div class="form-row">
+        <div class="form-row">
+
+          <div class="form-group col-5">
+            <label>Type utilisateur</label>
+            <input type="text" formControlName="typeUser" class="form-control" />
+
+        </div>  
+      </div>
+      
+        <div class="form-row">
 
               <div class="form-group col-5">
                 <label>user name</label>
@@ -13,6 +22,7 @@
 
 
           </div>
+         
           <div class="form-row">
               <div class="form-group col">
                   <label>Password</label>
@@ -35,6 +45,8 @@
               <button class="btn btn-primary mr-1">Register</button>
               <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
           </div>
+
+
       </form>
   </div>
 </div>

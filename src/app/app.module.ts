@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -14,8 +14,9 @@ import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { BoardUserComponent } from './board-user/board-user.component';
 import { ProfileComponent } from './profile/profile.component';
 
-import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { AuthService } from './_services/auth.service';
+import { ErrorInterceptor } from './_helpers/error.interceptor';
+import { AuthInterceptor } from './_helpers/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,11 @@ import { AuthService } from './_services/auth.service';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [authInterceptorProviders,AuthService],
+  providers: [
+    AuthService,
+   // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

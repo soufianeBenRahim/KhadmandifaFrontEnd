@@ -6,11 +6,7 @@ import { AuthService } from '../_services/auth.service';
 import {TokenStorageService} from '../_services/token-storage.service'
 
 
-@Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
-})
+@Component({ templateUrl: 'login.component.html' })
 export class LoginComponent implements OnInit {
     loginForm: FormGroup;
     loading = false;
@@ -27,6 +23,7 @@ export class LoginComponent implements OnInit {
     ) { 
         // redirect to home if already logged in
         if (this.tockenstorage.getToken()) { 
+            authenticationService.sendIsConnectedObservabel();
             this.router.navigate(['/']);
         }
     }
@@ -59,12 +56,13 @@ export class LoginComponent implements OnInit {
                 data => {
                   let jwt=data.headers.get('Authorization');
                   this.tockenstorage.saveToken(jwt);
-                  this.router.navigateByUrl('');
-                  
+                  this.router.navigate([this.returnUrl]);
+                  this.authenticationService.sendIsConnectedObservabel()
                 },
                 error => {
                     this.error = error;
                     this.loading = false;
+                    this.authenticationService.clearIsConnectedObservabel()
                 });
     }
 }

@@ -31,4 +31,9 @@ export class TokenStorageService {
   public getUser() {
     return JSON.parse(sessionStorage.getItem(USER_KEY));
   }
+  public isTockenExpired(){
+    let jwt=sessionStorage.getItem(TOKEN_KEY);
+   // const decoded = jwt_decode(jwt);
+
+  }
 }
