@@ -1,0 +1,73 @@
+<div class="card">
+    <div class="card-header">
+      <a class="card-link" data-toggle="collapse" href="#collapsetow">
+        Deplomes
+      </a>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalDeplome">
+          Ajouer un déplome
+         </button>
+            
+            
+            <!-- The Modal -->
+            <div class="modal" id="myModalDeplome">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+              
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                      <h4 class="modal-title">Ajouter un Déplome</h4>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+              
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <form #f="ngForm" (ngSubmit)="onAddDeplomeToCV(f.value)" >
+                                    
+                              <div class="form-group">
+                                <label for="organisation">Organisaion:</label>
+                                <input type="text" class="form-control" placeholder="Organisation" name ="Organisataion" ngModel >
+                              </div>
+                       
+                              <div class="form-group">
+                                <label for="Description">Description:</label>
+                                <input type="text" class="form-control" placeholder="Déscription" name ="Description" ngModel>
+                              </div>
+                              <div class="form-group">
+                                <label for="mois">Mois:</label>
+                                <input type="text" class="form-control" placeholder="mois" name ="mois" ngModel>
+                              </div>
+                              <div class="form-group">
+                                <label for="annee">annee:</label>
+                                <input type="text" class="form-control" placeholder="annee" name ="annee" ngModel>
+                              </div>
+                            <button type="submit" class="btn btn-primary">Ajouter</button>
+                          </form>
+                    </div>
+              
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+              
+                  </div>
+                </div>
+              </div>
+    </div>
+   
+   
+   
+    <div id="collapsetow" class="collapse show" data-parent="#accordion">
+      <div class="card-body">
+        <div class="card"  *ngFor="let d of diplomes">
+          <div class="card-body">
+            <h5 class="card-title">Déscription : {{d.description}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Organisation :{{d.organisataion}}</h6>
+            <p class="card-text">Annee :{{d.annee}}  Mois : {{d.mois}}</p>
+            <button (click)='onDeleteDeplome(d.id)' type="button" class="btn btn-danger">Supprimer</button>
+          </div>
+          
+        </div>
+       
+      </div>
+    </div>
+</div>

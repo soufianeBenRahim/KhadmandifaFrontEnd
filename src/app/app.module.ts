@@ -17,6 +17,11 @@ import { ProfileComponent } from './profile/profile.component';
 import { AuthService } from './_services/auth.service';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { AuthInterceptor } from './_helpers/auth.interceptor';
+import { DeplomeComponent } from './deplome/deplome.component';
+import { ExperianceComponent } from './experiance/experiance.component';
+import { CompitanceComponent } from './compitance/compitance.component';
+import { CVComponent } from './cv/cv.component';
+import { EtatCivilComponent } from './etat-civil/etat-civil.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +31,12 @@ import { AuthInterceptor } from './_helpers/auth.interceptor';
     HomeComponent,
     BoardAdminComponent,
     BoardUserComponent,
-    ProfileComponent
+    ProfileComponent,
+    DeplomeComponent,
+    ExperianceComponent,
+    CompitanceComponent,
+    CVComponent,
+    EtatCivilComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +47,7 @@ import { AuthInterceptor } from './_helpers/auth.interceptor';
   ],
   providers: [
     AuthService,
-   // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+   { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

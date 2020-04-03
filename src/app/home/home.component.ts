@@ -14,11 +14,12 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.userService.getPublicContent().subscribe(
       data => {
+        console.log('getPublicContent :secces')
         this.content = data;
       },
       err => {
-        this.content = 
-        err.error;
+        console.log('getPublicContent : erreur')
+        this.content = err.error;
       }
     );
   }

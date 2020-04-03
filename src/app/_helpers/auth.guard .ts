@@ -11,7 +11,6 @@ export class AuthGuard implements CanActivate {
     ) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        console.log('autgard');
         const currentUser = this.authenticationService.ISConnected();
         if (currentUser) {
             console.log('autgard , connected');

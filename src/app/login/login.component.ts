@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AuthService } from '../_services/auth.service';
 import {TokenStorageService} from '../_services/token-storage.service'
+import { UserService } from '../_services/user.service';
 
 
 @Component({ templateUrl: 'login.component.html' })
@@ -13,13 +14,15 @@ export class LoginComponent implements OnInit {
     submitted = false;
     returnUrl: string;
     error = '';
+     username :String = '';
 
     constructor(
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
         private authenticationService: AuthService,
-        private tockenstorage : TokenStorageService
+        private tockenstorage : TokenStorageService,
+        private userService : UserService
     ) { 
         // redirect to home if already logged in
         if (this.tockenstorage.getToken()) { 
@@ -56,14 +59,31 @@ export class LoginComponent implements OnInit {
                 data => {
                   let jwt=data.headers.get('Authorization');
                   this.tockenstorage.saveToken(jwt);
-                  this.router.navigate([this.returnUrl]);
-                  this.authenticationService.sendIsConnectedObservabel()
+                  console.log('data '+data);
+                  console.log('user connectee '+this.f.username.value);
+                
+                  this.userService.getUserByName(this.f.username.value)
+                  .subscribe(
+                      dataUser => {
+                        this.tockenstorage.saveUser(dataUser);
+                        console.log('user connectee '+this.f.username.value);
+                        console.log('data user '+dataUser);
+                        this.router.navigate([this.returnUrl]);
+                        this.authenticationService.sendIsConnectedObservabel()
+                      },
+                      error => {
+                        this.error = error;
+                        this.loading = false;
+                        this.authenticationService.clearIsConnectedObservabel()
+                      });
+
                 },
                 error => {
                     this.error = error;
                     this.loading = false;
                     this.authenticationService.clearIsConnectedObservabel()
                 });
+            
     }
 }
 
