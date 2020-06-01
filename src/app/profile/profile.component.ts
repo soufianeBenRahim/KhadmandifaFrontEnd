@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { TokenStorageService } from '../_services/token-storage.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { UserService } from '../_services/user.service';
+import { CV, CvGlobale } from '../Model/CV';
+import { CvServiceService } from '../_services/cv-service.service';
 
 @Component({
   selector: 'app-profile',
@@ -10,19 +12,26 @@ import { UserService } from '../_services/user.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  currentUser: any;
+  CVgs :CvGlobale[];
+  selectedCV :CvGlobale;
 
-  constructor(private tockenStorage : TokenStorageService,private userserv : UserService,private route : ActivatedRoute) { }
+  constructor(private router:Router,private route:ActivatedRoute,private tokenStorageService: TokenStorageService,private userserv : UserService,private cvService : CvServiceService) { }
 
   ngOnInit() {
-    
-    let user =JSON.parse(this.tockenStorage.getUser());
-    if(user){
-      this.currentUser = this.userserv.GetUserById(user.id)
-    }else{
-      this.currentUser =null;
+
+    this.route.params.subscribe(params => {
+      console.log("param id"+params)
+      this.cvService.GetCVFromUser(params.id).subscribe(data=>{
+        console.log(data)
+        this.CVgs=data;
+      },err=>{
+        console.log(err);
+      })
+    });
     }
-    
-  }
+    onSelectedCvCahge(c:CvGlobale){
+      this.selectedCV=c;
+    }
+
 }
 

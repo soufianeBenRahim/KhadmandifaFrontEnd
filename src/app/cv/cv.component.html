@@ -1,11 +1,4 @@
 <div id="accordion">
-
-    
-    <app-etat-civil [etatCevile]='cv' [idCv]='id'></app-etat-civil>
-    <app-deplome [idCv]='id'></app-deplome>
-    <app-experiance  [idCv]='id'></app-experiance>
-    <app-compitance [idCv]='id'></app-compitance>
-    
-
-  
-  </div>
+    <app-etat-civil [etatCevile]='_Cvg.cv'></app-etat-civil>
+    <app-deplome [diplomes]='_Cvg.diplomes'></app-deplome>
+</div>

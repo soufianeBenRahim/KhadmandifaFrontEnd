@@ -14,15 +14,15 @@ import { CV } from './Model/CV';
 export class AppComponent implements OnInit {
   isLoggedIn = false;
   isConnectedSubscription: Subscription;
-  CVs :CV[];
-  user:any ;
+  user:user ;
+  
   constructor(private tokenStorageService: TokenStorageService,private authenticationService:AuthService,private router:Router,private cvServices :CvServiceService) { }
 
   ngOnInit() {
     
    //this.isConnectedSubscription=
-   this.user=this.tokenStorageService.getUser();
-   console.log(this.user);
+   this.user=JSON.parse(this.tokenStorageService.getUser());
+   console.log('user on init componet '+this.user);
    this.isLoggedIn=!!this.tokenStorageService.getToken;
    this.ActiveShortCut();
     this.isConnectedSubscription=this.authenticationService.getIsConnectedObservabel().subscribe(message => {
@@ -31,22 +31,11 @@ export class AppComponent implements OnInit {
           this.user=this.tokenStorageService.getUser();
           console.log( 'app compennete int user :'+this.user);
           this.isLoggedIn =true;
-          this.cvServices.GetCVFromUser(JSON.parse(this.user).id).subscribe(Data=>{
-            this.CVs=Data;
-            this.CVs.forEach(element => {
-              console.log(element.designationCV);
-            });
-          },err=>{
-            console.log(err);
-          }
-          );
-
         } else if("desconected"==message.text){
           console.log("desconected");
           // clear messages when empty message received
           this.isLoggedIn =false;
           this.user=null;
-          this.CVs=null;
         }
     },err=>{
       console.log(err);
@@ -57,14 +46,7 @@ ActiveShortCut(){
   if(this.user){
     console.log( 'app compennete int user :'+this.user);
     this.isLoggedIn =true;
-    this.cvServices.GetCVFromUser(JSON.parse(this.user).id).subscribe(Data=>{
-      this.CVs=Data;
-      },err=>{
-      console.log(err);
-    }
-    );
     }else{
-    this.CVs=null;
     this.isLoggedIn =false;
   }
  }

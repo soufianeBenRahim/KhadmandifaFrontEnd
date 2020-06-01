@@ -36,7 +36,7 @@ import { EtatCivilComponent } from './etat-civil/etat-civil.component';
     ExperianceComponent,
     CompitanceComponent,
     CVComponent,
-    EtatCivilComponent
+    EtatCivilComponent,
   ],
   imports: [
     BrowserModule,

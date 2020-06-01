@@ -10,15 +10,16 @@ import { CV } from '../Model/CV';
 })
 export class EtatCivilComponent implements OnInit {
   @Input() etatCevile : CV;
-  @Input() idCv;
+
   constructor(private  cvservice : CvServiceService,private rout : ActivatedRoute) { }
 
   ngOnInit() {
     console.log('idCv updatee :'+this.etatCevile);
   }
+
   onUpdateCv(data:any){
     console.log('data etatcevil to update'+ data)
-    this.cvservice.UpdateCV(this.idCv,data).subscribe(
+    this.cvservice.UpdateCV(data.id,data).subscribe(
       data => {
              console.log('idCv updatee :'+this.etatCevile);
       },

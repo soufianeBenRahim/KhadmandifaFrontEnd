@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import { CvServiceService } from '../_services/cv-service.service';
 import {Deplome} from '../Model/CV'
@@ -9,40 +9,33 @@ import {Deplome} from '../Model/CV'
   styleUrls: ['./deplome.component.css']
 })
 export class DeplomeComponent implements OnInit {
-  @Input()  idCv;
-  diplomes: Deplome[];
+  @Input()  diplomes: Deplome[];
+  @Input()  idCV: string;
+  @ViewChild('closebutton',{static: false}) closebutton;
   constructor(private router:Router,private cvService : CvServiceService) { }
 
   ngOnInit() {
-    this.cvService.getDeplomesFromCv(this.idCv)
-    .subscribe(
-      data=>{
-        console.log('les deplommes a afficher '+data)
-        console.log('les deplommes a afficher '+this.idCv)
-        this.diplomes=data;
-
-    },
-    erreur=>{
-      console.log(erreur);
-    }
-    )
+  
   }
   onDeleteDeplome( id :string){
     this.cvService.delteDeplome(id).subscribe(data=>{
-console.log(' delete data :'+data);
-location.reload(true);
+      console.log(' delete data :'+data);
+      this.diplomes.splice(this.diplomes.indexOf(data.body));
     },erreur=>{
       console.log(' delete  erreur :'+erreur);
     });
   }
 
-  onAddDeplomeToCV(deplome :any){
+  onAddDeplomeToCV(deplome :Deplome){
     console.log('valeurs a ajouter '+deplome);
-    console.log('id cv : '+this.idCv);
-    this.cvService.addDeplomeToCV(deplome,this.idCv).subscribe(data=>{
-console.log('onAddDeplomeToCV data '+data);
 
-
+    this.cvService.addDeplomeToCV(deplome,this.idCV).subscribe(data=>{
+      console.log('onAddDeplomeToCV data '+data);
+      if(this.diplomes==null){
+        this.diplomes=[];
+      }
+      this.diplomes.push(data.body);
+      this.closebutton.nativeElement.click();
     },erreur=>{
       console.log('onAddDeplomeToCV erreur'+erreur);
     })

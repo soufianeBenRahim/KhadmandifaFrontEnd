@@ -1,25 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { CvServiceService } from '../_services/cv-service.service';
-import { CV } from '../Model/CV';
+import { Component, OnInit, Input } from '@angular/core';
+import { CvGlobale } from '../Model/CV';
 
 
 @Component({
+  selector:'cv-component',
   templateUrl: './cv.component.html',
   styleUrls: ['./cv.component.css']
 })
 export class CVComponent implements OnInit {
-id :string;
-  constructor(private route:ActivatedRoute,private router:Router,private cvServic: CvServiceService) { }
-cv : CV;
-  ngOnInit() {
-    this.id=this.route.snapshot.params.id;
-    console.log('id cv selectionner a partir de menue principale :'+this.id);
-    this.cvServic.getCVByID(this.id).subscribe(data=>{
-      this.cv=data;
-    },erreur=>{
-      console.log(erreur);
-    });
-  }
+constructor() { }
+_Cvg : CvGlobale;
 
+@Input()
+set Cvg(val: CvGlobale) {
+  console.log('currently selected item=', val);
+  this._Cvg = val;
+}
+  ngOnInit() {
+  console.log('cv recuperee dans le composent CV '+this.Cvg);
+  }
 }

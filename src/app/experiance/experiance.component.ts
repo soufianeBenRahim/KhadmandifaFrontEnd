@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CV } from '../Model/CV';
+import {  Experiance } from '../Model/CV';
 import { CvServiceService } from '../_services/cv-service.service';
 
 @Component({
@@ -20,5 +20,16 @@ export class ExperianceComponent implements OnInit {
       },erruer=>{
       console.log(erruer);
       });
+  }
+  onAddExperianceToCV(experiance :Experiance){
+    console.log('valeurs a ajouter '+experiance);
+    console.log('id cv : '+this.idCv);
+    this.cvService.addExperiance(experiance,this.idCv).subscribe(data=>{
+console.log('onAddDeplomeToCV data '+data);
+
+
+    },erreur=>{
+      console.log('onAddDeplomeToCV erreur'+erreur);
+    })
   }
 }

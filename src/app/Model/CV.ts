@@ -35,6 +35,14 @@ export interface Deplome
        Id : Number;
        annee : Number;
        mois : Number;
-       Description : String;
-       Organisataion : String;
+       description : String;
+       organisataion : String;
+
     }
+   export interface CvGlobale
+   {
+    cv:CV;
+    deplomes :Deplome[];
+    compitance : Compitance[];
+    experiance : Experiance[];
+   }

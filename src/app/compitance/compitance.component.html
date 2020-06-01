@@ -1,10 +1,10 @@
 <div class="card">
     <div class="card-header">
       <a class="card-link" data-toggle="collapse" href="#collapsefor">
-        Eperiance
+        Compitance
       </a>
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalCompitance">
-          Editer
+          Ajouter une compitance
          </button>
                     <!-- The Modal -->
                     <div class="modal" id="myModalCompitance">
@@ -13,7 +13,7 @@
                       
                             <!-- Modal Header -->
                             <div class="modal-header">
-                              <h4 class="modal-title">Edition de l'état civile</h4>
+                              <h4 class="modal-title">Ajouter une compitance</h4>
                               <button type="button" class="close" data-dismiss="modal">&times;</button>
                             </div>
                       
@@ -22,20 +22,12 @@
                                 <form action="/action_page.php">
                                             
                                       <div class="form-group">
-                                        <label for="email">Nom:</label>
-                                        <input type="text" class="form-control" placeholder="nom" id="nom">
+                                        <label for="nom">Déscription:</label>
+                                        <input type="text" class="form-control" placeholder="Déscription" id="Description">
                                       </div>
                                       <div class="form-group">
-                                        <label for="email">Prenom:</label>
-                                        <input type="text" class="form-control" placeholder="Prenom" id="prenom">
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="email">Email address:</label>
-                                        <input type="email" class="form-control" placeholder="Enter email" id="email">
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="email">Adress:</label>
-                                        <input type="text" class="form-control" placeholder="Adress" id="adress">
+                                        <label for="pourcentage">Pourcentage:</label>
+                                        <input type="number" class="form-control" placeholder="pourcentage" id="pourcentage">
                                       </div>
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                   </form>
@@ -53,7 +45,13 @@
     <div id="collapsefor" class="collapse show" data-parent="#accordion">
       <div class="card-body">
    
-       Compitance  
+        <div class="card"  *ngFor="let c of compitances">
+          <div class="card-body">
+            <h5 class="card-title">Déscription : {{c.Description}}</h5>
+            <p class="card-text">Pourcentage :{{c.pourcentage}}</p>
+            <button (click)='onDeleteCompitance(c.id)' type="button" class="btn btn-danger">Supprimer</button>
+          </div>
+        </div>
  
       </div>
     </div>

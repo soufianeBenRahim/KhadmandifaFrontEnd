@@ -53,10 +53,7 @@
           <a class="nav-link" (click)="logout()">الخروج</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="profile/:{{user.id}}" *ngIf="user">الملف الشخصي</a>
-        </li>
-        <li  class="nav-item" *ngFor="let c of CVs">
-          <a class="nav-link" href="/CV/{{c.id}}">{{c.designationCV}}</a>
+          <a class="nav-link" [routerLink]="['/profile',user.id]"  *ngIf="user">الملف الشخصي</a>
         </li>
       </ul>
 
