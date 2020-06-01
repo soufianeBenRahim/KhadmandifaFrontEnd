@@ -9,16 +9,11 @@ import { Compitance } from '../Model/CV';
 })
 export class CompitanceComponent implements OnInit {
 @Input() idCv:number;
-compitances: Compitance[];
+@Input() compitances: Compitance[];
   constructor(private cvService : CvServiceService) { }
 
   ngOnInit() {
-    this.cvService.getCompitancesFromCV(this.idCv).subscribe(data=>{
-this.compitances=data;
-    },erreur=>{
-console.log(erreur);
-    })
-
+   
   }
   onDeleteCompitance(id){
     this.cvService.deleteCompitance(id).subscribe(data=>{

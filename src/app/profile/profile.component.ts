@@ -31,6 +31,7 @@ export class ProfileComponent implements OnInit {
     }
     onSelectedCvCahge(c:CvGlobale){
       this.selectedCV=c;
+      console.log("cv selectionner dans la page profile"+this.selectedCV);
     }
 
 }

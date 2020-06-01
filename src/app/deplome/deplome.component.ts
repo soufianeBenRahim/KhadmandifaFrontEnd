@@ -9,7 +9,7 @@ import {Deplome} from '../Model/CV'
   styleUrls: ['./deplome.component.css']
 })
 export class DeplomeComponent implements OnInit {
-  @Input()  diplomes: Deplome[];
+  @Input()  deplomes: Deplome[];
   @Input()  idCV: string;
   @ViewChild('closebutton',{static: false}) closebutton;
   constructor(private router:Router,private cvService : CvServiceService) { }
@@ -20,7 +20,7 @@ export class DeplomeComponent implements OnInit {
   onDeleteDeplome( id :string){
     this.cvService.delteDeplome(id).subscribe(data=>{
       console.log(' delete data :'+data);
-      this.diplomes.splice(this.diplomes.indexOf(data.body));
+      this.deplomes.splice(this.deplomes.indexOf(data.body));
     },erreur=>{
       console.log(' delete  erreur :'+erreur);
     });
@@ -31,10 +31,10 @@ export class DeplomeComponent implements OnInit {
 
     this.cvService.addDeplomeToCV(deplome,this.idCV).subscribe(data=>{
       console.log('onAddDeplomeToCV data '+data);
-      if(this.diplomes==null){
-        this.diplomes=[];
+      if(this.deplomes==null){
+        this.deplomes=[];
       }
-      this.diplomes.push(data.body);
+      this.deplomes.push(data.body);
       this.closebutton.nativeElement.click();
     },erreur=>{
       console.log('onAddDeplomeToCV erreur'+erreur);

@@ -9,13 +9,9 @@ import { CvGlobale } from '../Model/CV';
 })
 export class CVComponent implements OnInit {
 constructor() { }
-_Cvg : CvGlobale;
+@Input() Cvg : CvGlobale;
 
-@Input()
-set Cvg(val: CvGlobale) {
-  console.log('currently selected item=', val);
-  this._Cvg = val;
-}
+
   ngOnInit() {
   console.log('cv recuperee dans le composent CV '+this.Cvg);
   }
