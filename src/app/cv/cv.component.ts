@@ -13,6 +13,7 @@ constructor() { }
 
 
   ngOnInit() {
+    
   console.log('cv recuperee dans le composent CV '+this.Cvg);
   }
 }

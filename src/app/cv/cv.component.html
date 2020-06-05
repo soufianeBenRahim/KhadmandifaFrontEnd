@@ -1,6 +1,139 @@
-<div id="accordion">
-    <app-etat-civil [etatCevile]='Cvg.cv'></app-etat-civil>
-    <app-deplome [deplomes]='Cvg.deplomes'></app-deplome>
-    <app-experiance [experiances]='Cvg.experiance'></app-experiance>
-    <app-compitance [compitances]='Cvg.compitance'></app-compitance>
-</div>
+
+    <div class="container">
+        <h2>{{Cvg.cv.designationCV}}</h2>
+        <p>Détail</p>
+        <div id="accordion">
+          <div class="card">
+            <div class="card-header">
+              <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                Etat civile
+              </a>
+            </div>
+            <div id="collapseOne" class="collapse show" data-parent="#accordion" *ngIf='Cvg'>
+              <div class="card-body">
+   
+                <h2>Etat civile   </h2>
+       
+                <div class="form-group">
+                 <label> 
+                 nom :
+                 </label> 
+                 <label> 
+                  {{Cvg.cv.nom}}
+                 </label> 
+                 
+                 </div>
+                 <div class="form-group">
+                   <label> 
+                     prenom :
+                   </label> 
+                   <label> 
+                    {{Cvg.cv.prenom}}
+                   </label> 
+                   
+                   </div>
+                   <div class="form-group">
+                     <label> 
+                      Etat civile :
+                     </label> 
+                     <label > 
+                      {{Cvg.cv.etatcivile}}
+                     </label> 
+                     
+                     </div>
+                   <div class="form-group">
+                     <label> 
+                       adress :
+                     </label> 
+                     <label> 
+                      {{Cvg.cv.adress}}
+                     </label> 
+                     
+                     </div>
+       
+                     <div class="form-group">
+                       <label> 
+                         Email :
+                       </label> 
+                       <label> 
+                        {{Cvg.cv.email}}
+                       </label> 
+                       
+                       </div>
+                       
+                     <div class="form-group">
+                       <label> 
+                         Tel :
+                       </label> 
+                       <label> 
+                        {{Cvg.cv.tel}}
+                       </label> 
+                       
+                       </div>
+             </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
+              Deplomes
+            </a>
+            </div>
+            <div id="collapseTwo" class="collapse" data-parent="#accordion">
+              <div class="card-body">
+                <div class="card"  *ngFor="let d of Cvg.deplomes">
+                  <div class="card-body">
+                    <h5 class="card-title">Déscription : {{d.description}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Organisation :{{d.organisataion}}</h6>
+                    <p class="card-text">Annee :{{d.annee}}  Mois : {{d.mois}}</p>
+                    <button (click)='onDeleteDeplome(d.id)' type="button" class="btn btn-danger">Supprimer</button>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
+               Eperiances
+              </a>
+            </div>
+            <div id="collapseThree" class="collapse" data-parent="#accordion">
+              <div class="card-body">
+                <div class="card"  *ngFor="let experiance of experiances">
+                  <div class="card-body">
+                    <h5 class="card-title">Déscription : {{experiance.Description}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Organisation :{{experiance.Organiastion}}</h6>
+                    <p class="card-text">Annee debut :{{experiance.anneeDebut}}  Mois  : {{experiance.MoisDebut}}</p>
+                    <p class="card-text">Annee fin :{{experiance.anneeFin}}  Mois : {{experiance.MoisFin}}</p>
+                  
+                    <button (click)='onDeleteExperiance(experiance.id)' type="button" class="btn btn-danger">Supprimer</button>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <a class="collapsed card-link" data-toggle="collapse" href="#collapsefor">
+               Compitances
+              </a>
+            </div>
+            <div id="collapsefor" class="collapse" data-parent="#accordion">
+              <div class="card-body">
+                <div class="card"  *ngFor="let c of Cvg.compitances">
+                  <div class="card-body">
+                    <h5 class="card-title">Déscription : {{c.Description}}</h5>
+                    <p class="card-text">Pourcentage :{{c.pourcentage}}</p>
+                    <button (click)='onDeleteCompitance(c.id)' type="button" class="btn btn-danger">Supprimer</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+

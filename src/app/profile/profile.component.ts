@@ -5,6 +5,7 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { UserService } from '../_services/user.service';
 import { CV, CvGlobale } from '../Model/CV';
 import { CvServiceService } from '../_services/cv-service.service';
+import { user } from '../Model/User';
 
 @Component({
   selector: 'app-profile',
@@ -14,20 +15,36 @@ import { CvServiceService } from '../_services/cv-service.service';
 export class ProfileComponent implements OnInit {
   CVgs :CvGlobale[];
   selectedCV :CvGlobale;
-
-  constructor(private router:Router,private route:ActivatedRoute,private tokenStorageService: TokenStorageService,private userserv : UserService,private cvService : CvServiceService) { }
+  SelectedUser:user;
+  constructor(private router:Router,
+    private route:ActivatedRoute,
+    private userserv : UserService,
+    private cvService : CvServiceService) { }
 
   ngOnInit() {
 
-    this.route.params.subscribe(params => {
-      console.log("param id"+params)
-      this.cvService.GetCVFromUser(params.id).subscribe(data=>{
-        console.log(data)
-        this.CVgs=data;
-      },err=>{
-        console.log(err);
-      })
-    });
+      this.route.params.subscribe(
+      params => 
+      {
+        console.log("param id"+params);
+        this.cvService.GetCVFromUser(params.id).subscribe(data=>{
+          console.log(data)
+          this.CVgs=data;
+        },err=>{
+          console.log(err);
+        });
+        this.userserv.GetUserById(params.id).subscribe(
+          data=>{
+            console.log('GetUserById in frofile compenete '+data)
+            this.SelectedUser=data;
+          },err=>{
+            console.log(err);
+          }
+        );
+      },erruer=>{
+        console.log(erruer)
+      }
+      )
     }
     onSelectedCvCahge(c:CvGlobale){
       this.selectedCV=c;

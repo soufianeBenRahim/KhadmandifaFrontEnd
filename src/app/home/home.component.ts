@@ -12,15 +12,6 @@ export class HomeComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.userService.getPublicContent().subscribe(
-      data => {
-        console.log('getPublicContent :secces')
-        this.content = data;
-      },
-      err => {
-        console.log('getPublicContent : erreur')
-        this.content = err.error;
-      }
-    );
+   
   }
 }

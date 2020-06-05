@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { user } from '../Model/User';
 //import {JwtHelper} from 'angular2-jwt';
 
 const TOKEN_KEY = 'auth-token';
@@ -48,7 +49,7 @@ export class TokenStorageService {
     window.sessionStorage.setItem(TOKEN_KEY, token);
   }
 
-  public getToken(): string {
+  public getToken(): any {
     return sessionStorage.getItem(TOKEN_KEY);
   }
 

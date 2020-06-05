@@ -1,4 +1,3 @@
-import { SafeScript } from '@angular/platform-browser';
 
 export interface CV{
     ID : number;
@@ -43,6 +42,6 @@ export interface Deplome
    {
     cv:CV;
     deplomes :Deplome[];
-    compitance : Compitance[];
-    experiance : Experiance[];
+    compitances : Compitance[];
+    experiances : Experiance[];
    }

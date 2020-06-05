@@ -8,7 +8,7 @@ import { CvServiceService } from '../_services/cv-service.service';
   styleUrls: ['./experiance.component.css']
 })
 export class ExperianceComponent implements OnInit {
-  @Input()  experiances : any;
+  @Input()  experiances : Experiance[];
   @Input()  idCv : number;
   constructor(private cvService : CvServiceService) { }
 

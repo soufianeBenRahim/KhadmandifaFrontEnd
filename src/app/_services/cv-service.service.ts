@@ -17,12 +17,8 @@ export class CvServiceService {
   deleteCompitance(id: any) {
     return this.http.delete(AUTH_API+'CVs/compitances/'+id+'/delete');
   }
-  getCompitancesFromCV(idCv: any) {
-    return this.http.get<Compitance[]>(AUTH_API+'CVs/'+idCv+'/compitances',httpOptions)
-  }
-  getDeplomesFromCv(idCv: any) {
-    return this.http.get<Deplome[]>(AUTH_API+'CVs/'+idCv+'/deplomes',httpOptions);
-  }
+
+
   deleteEperiance(id: number) {
     return this.http.delete(AUTH_API+'CVs/Eperiance/'+id+'/delete',{observe : 'response'});
   }

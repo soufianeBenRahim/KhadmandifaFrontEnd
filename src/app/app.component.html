@@ -53,7 +53,7 @@
           <a class="nav-link" (click)="logout()">الخروج</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/profile',user.id]"  *ngIf="user">الملف الشخصي</a>
+          <a class="nav-link" [routerLink]="['/profile',Connecteduser.id]"   *ngIf="Connecteduser">الملف الشخصي</a>
         </li>
       </ul>
 
