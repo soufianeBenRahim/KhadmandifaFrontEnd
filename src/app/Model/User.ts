@@ -1,16 +1,14 @@
-export class user
+export interface  IAppUser
 {
     id : number;
-    username : String;
-    gender : String;
-    actived:boolean;
-    roles : AppRole[];
-    tarifhoraire : number;
-    resume :String; 
-    email : String;
-}
-export class AppRole
-{
-    id : number;
-     roleName : String;
+     username : String;
+     gender : String;
+     actived:boolean;
+     roles:[{
+        id : number;
+        roleName : String;
+      }];
+     tarifhoraire : number;
+     resume :String; 
+     email : String;
 }

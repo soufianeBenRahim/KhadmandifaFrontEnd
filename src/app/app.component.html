@@ -20,7 +20,7 @@
             روابط سريعة
           </a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">الملف الشخصي</a>
+            <a class="dropdown-item"  [routerLink]="['/profile',Connecteduser.id]"   *ngIf="Connecteduser">الملف الشخصي</a>
             <a class="dropdown-item" href="#">إضافة مشروع</a>
             <a class="dropdown-item" href="#">البخث عن مهمة</a>
             <a class="dropdown-item" href="#">البخث عن شخص</a>
@@ -44,7 +44,7 @@
           <a href="/register" class="nav-link" routerLink="register">التسجيل</a>
         </li>
         <li class="nav-item">
-          <a href="/login" class="nav-link" routerLink="login">الدخول</a>
+          <a href="/login" class="nav-link" routerLink="['/login','/'']">الدخول</a>
         </li>
       </ul>
   

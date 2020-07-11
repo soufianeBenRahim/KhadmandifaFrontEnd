@@ -4,7 +4,7 @@ import { AuthService } from './_services/auth.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { CvServiceService} from './_services/cv-service.service'
-import { user } from './Model/User';
+import { IAppUser } from './Model/User';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +14,7 @@ import { user } from './Model/User';
 export class AppComponent implements OnInit {
   isLoggedIn = false;
   isConnectedSubscription: Subscription;
-  Connecteduser:user ;
+  Connecteduser:IAppUser ;
   
   constructor(private tokenStorageService: TokenStorageService,
     private authenticationService:AuthService,
@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
     this.isConnectedSubscription=this.authenticationService.getIsConnectedObservabel().subscribe(message => {
         if ("connected"==message.text) {
           console.log("connected");
-          this.Connecteduser=this.tokenStorageService.getUser() as user;
+          this.Connecteduser=this.tokenStorageService.getUser();
           console.log( 'app compennete int user observe :'+this.Connecteduser);
           this.isLoggedIn =true;
         } else if("desconected"==message.text){

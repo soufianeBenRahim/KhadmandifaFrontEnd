@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { IAppUser } from '../Model/User';
 
 
 const API_URL = 'http://localhost:8080/';
@@ -20,8 +21,9 @@ export class UserService {
     return this.http.get(API_URL+"projets", { responseType: 'text' });
   }
 
-  getUserByName(name: String): Observable<any> {
-    return this.http.get(API_URL + 'GetUserByName?name='+name, { responseType: 'text' });
+  getUserByName(name: String) {
+    console.log("user service call getUserByName id name: "+name)
+    return this.http.get<IAppUser[]>(API_URL + 'GetUserByName?name='+name,  { observe: 'response' });
   }
 
   getModeratorBoard(): Observable<any> {
