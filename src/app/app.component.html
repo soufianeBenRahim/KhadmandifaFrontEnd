@@ -15,12 +15,12 @@
       <ul class="navbar-nav">
   
         <!-- Dropdown -->
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" *ngIf='iduser'>
           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
             روابط سريعة
           </a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item"  [routerLink]="['/profile',Connecteduser.id]"   *ngIf="Connecteduser">الملف الشخصي</a>
+          <div class="dropdown-menu" >
+            <a class="dropdown-item"  (click)="onclickprofile()" >الملف الشخصي</a>
             <a class="dropdown-item" href="#">إضافة مشروع</a>
             <a class="dropdown-item" href="#">البخث عن مهمة</a>
             <a class="dropdown-item" href="#">البخث عن شخص</a>
@@ -52,8 +52,8 @@
         <li class="nav-item">
           <a class="nav-link" (click)="logout()">الخروج</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/profile',Connecteduser.id]"   *ngIf="Connecteduser">الملف الشخصي</a>
+        <li class="nav-item" *ngIf="iduser">
+          <a class="nav-link" (click)="onclickprofile()"  >الملف الشخصي</a>
         </li>
       </ul>
 

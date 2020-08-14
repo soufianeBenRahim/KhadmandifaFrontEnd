@@ -14,7 +14,7 @@
 
       <h3>Plus de detail</h3>
       <p>Liste des CVs.</p>
-      <ul class="nav nav-pills flex-column" >
+      <ul class="nav nav-pills flex-column" *ngIf='SelectedUser'>
           <li  class="nav-item" *ngFor="let c of CVgs">
             <button class="btn btn-success" (click)="onSelectedCvCahge(c)">{{c.cv.designationCV}}</button>
 

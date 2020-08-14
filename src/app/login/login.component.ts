@@ -66,8 +66,9 @@ export class LoginComponent implements OnInit {
                   this.userService.getUserByName(this.f.username.value)
                   .subscribe(
                       dataUser => {
-                          let appuser=dataUser ;
-                        this.tockenstorage.saveUser(appuser);
+                          console.log('user getUserByName '+dataUser);
+                          let appuser= dataUser ;
+                        this.tockenstorage.saveUser(appuser[0].id);
                         console.log('user connectee '+this.f.username.value);
                         console.log('data user '+appuser);
                         this.router.navigate([this.returnUrl]);

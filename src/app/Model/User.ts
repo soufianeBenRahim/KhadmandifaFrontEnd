@@ -1,4 +1,4 @@
-export interface  IAppUser
+export class  IAppUser
 {
     id : number;
      username : String;
