@@ -96,15 +96,15 @@
           <div class="card">
             <div class="card-header">
               <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
-               Eperiances
+               Experiances
               </a>
             </div>
             <div id="collapseThree" class="collapse" data-parent="#accordion">
               <div class="card-body">
-                <div class="card"  *ngFor="let experiance of experiances">
+                <div class="card"  *ngFor="let experiance of Cvg.experiances">
                   <div class="card-body">
-                    <h5 class="card-title">Déscription : {{experiance.Description}}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Organisation :{{experiance.Organiastion}}</h6>
+                    <h5 class="card-title">Déscription : {{experiance.description}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Organisation :{{experiance.organisation}}</h6>
                     <p class="card-text">Annee debut :{{experiance.anneeDebut}}  Mois  : {{experiance.MoisDebut}}</p>
                     <p class="card-text">Annee fin :{{experiance.anneeFin}}  Mois : {{experiance.MoisFin}}</p>
                   
@@ -125,7 +125,7 @@
               <div class="card-body">
                 <div class="card"  *ngFor="let c of Cvg.compitances">
                   <div class="card-body">
-                    <h5 class="card-title">Déscription : {{c.Description}}</h5>
+                    <h5 class="card-title">Déscription : {{c.description}}</h5>
                     <p class="card-text">Pourcentage :{{c.pourcentage}}</p>
                     <button (click)='onDeleteCompitance(c.id)' type="button" class="btn btn-danger">Supprimer</button>
                   </div>
