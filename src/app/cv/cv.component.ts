@@ -20,7 +20,7 @@ constructor(private cvService : CvServiceService) { }
    onDeleteDeplome( id :string){
     this.cvService.delteDeplome(id).subscribe(data=>{
       console.log(' delete data :'+data);
-      this.Cvg.deplomes.splice(this.Cvg.deplomes.indexOf(data.body));
+      this.Cvg.deplomes.splice(this.Cvg.deplomes.indexOf(data));
     },erreur=>{
       console.log(' delete  erreur :'+erreur);
     });

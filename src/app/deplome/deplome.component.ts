@@ -20,7 +20,7 @@ export class DeplomeComponent implements OnInit {
   onDeleteDeplome( id :string){
     this.cvService.delteDeplome(id).subscribe(data=>{
       console.log(' delete data :'+data);
-      this.deplomes.splice(this.deplomes.indexOf(data.body));
+      this.deplomes.splice(this.deplomes.indexOf(data));
     },erreur=>{
       console.log(' delete  erreur :'+erreur);
     });

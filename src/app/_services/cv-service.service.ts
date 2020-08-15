@@ -28,7 +28,7 @@ export class CvServiceService {
     return this.http.put<Deplome>(AUTH_API+'CVs/adddeplome?id='+idCv.toString(),deplome);
   }
   delteDeplome(id: string) {
-    return this.http.delete<Deplome>(AUTH_API+'CVs/deplomes/'+id+'/delete',{observe : 'response'});
+    return this.http.delete<Deplome>(AUTH_API+'CVs/deplomes/'+id+'/delete');
   }
 
   getCVByID(idCv: string) {
