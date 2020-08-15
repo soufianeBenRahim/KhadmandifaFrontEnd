@@ -12,20 +12,20 @@ const httpOptions = {
 })
 export class CvServiceService {
   addExperiance(experiance: Experiance, idCv: number) {
-    return this.http.post(AUTH_API+'CVs/adddExperiance?id='+idCv,experiance,{ observe: 'response' });
+    return this.http.post<Experiance>(AUTH_API+'CVs/adddExperiance?id='+idCv.toString(),experiance);
   }
   deleteCompitance(id: any) {
-    return this.http.delete(AUTH_API+'CVs/compitances/'+id+'/delete');
+    return this.http.delete<Compitance>(AUTH_API+'CVs/compitances/'+id+'/delete');
   }
 
 
   deleteEperiance(id: number) {
-    return this.http.delete(AUTH_API+'CVs/Eperiance/'+id+'/delete',{observe : 'response'});
+    return this.http.delete<Experiance>(AUTH_API+'CVs/Eperiance/'+id+'/delete');
   }
   addDeplomeToCV(deplome: Deplome, idCv: any) {
     console.log(' parametre idcv : '+idCv)
     console.log(' parametre deplome : '+deplome)
-    return this.http.put<Deplome>(AUTH_API+'CVs/adddeplome?id='+idCv.toString(),deplome);
+    return this.http.post<Deplome>(AUTH_API+'CVs/adddeplome?id='+idCv.toString(),deplome);
   }
   delteDeplome(id: string) {
     return this.http.delete<Deplome>(AUTH_API+'CVs/deplomes/'+id+'/delete');
