@@ -169,28 +169,28 @@
                 <form #fexper="ngForm" (ngSubmit)="onAddExperianceToCV(fexper.value)">
 
                   <div class="form-group">
-                    <label for="Description">Description:</label>
-                    <input type="text" class="form-control" placeholder="Description" name="Description" ngModel>
+                    <label for="description">Description:</label>
+                    <input type="text" class="form-control" placeholder="Description" name="description" ngModel>
                   </div>
                   <div class="form-group">
-                    <label for="Organistaion">Organistaion:</label>
-                    <input type="text" class="form-control" placeholder="Organistaion" name="Organistaion" ngModel>
+                    <label for="organisation">Organistaion:</label>
+                    <input type="text" class="form-control" placeholder="Organistaion" name="organisation" ngModel>
                   </div>
                   <div class="form-group">
                     <label for="anneeDebut">Annee debut:</label>
                     <input type="number" class="form-control" placeholder="Annee debut" name="anneeDebut" ngModel>
                   </div>
                   <div class="form-group">
-                    <label for="MoisDebut">Mois debut:</label>
-                    <input type="number" class="form-control" placeholder="Mois debut" name="MoisDebut" ngModel>
+                    <label for="moisDebut">Mois debut:</label>
+                    <input type="number" class="form-control" placeholder="Mois debut" name="moisDebut" ngModel>
                   </div>
                   <div class="form-group">
                     <label for="anneeFin">Annee fin:</label>
                     <input type="number" class="form-control" placeholder="Annee Fin" name="anneeFin" ngModel>
                   </div>
                   <div class="form-group">
-                    <label for="MoisFin">Mois fin:</label>
-                    <input type="number" class="form-control" placeholder="Mois Fin" name="MoisFin" ngModel>
+                    <label for="moisFin">Mois fin:</label>
+                    <input type="number" class="form-control" placeholder="Mois Fin" name="moisFin" ngModel>
                   </div>
                   <div class="form-group">
                     <label for="curent">en cours:</label>
@@ -216,8 +216,9 @@
             <div class="card-body">
               <h5 class="card-title">Déscription : {{experiance.description}}</h5>
               <h6 class="card-subtitle mb-2 text-muted">Organisation :{{experiance.organisation}}</h6>
-              <p class="card-text">Annee debut :{{experiance.anneeDebut}} Mois : {{experiance.MoisDebut}}</p>
-              <p class="card-text">Annee fin :{{experiance.anneeFin}} Mois : {{experiance.MoisFin}}</p>
+              <p class="card-text">Annee debut :{{experiance.anneeDebut}} Mois : {{experiance.moisDebut}}</p>
+              <p class="card-text" *ngIf='!experiance.curent'>Annee fin :{{experiance.anneeFin}} Mois : {{experiance.moisFin}}</p>
+              <p class="card-text" *ngIf='experiance.curent'>En cour</p>
 
               <button (click)='onDeleteExperiance(experiance.id)' type="button"
                 class="btn btn-danger">Supprimer</button>
