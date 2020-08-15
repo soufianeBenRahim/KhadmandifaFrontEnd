@@ -1,6 +1,6 @@
 
 export interface CV{
-    ID : number;
+    id : number;
     designationCV : String ;
     etatcivile : String ;
     nom : String;

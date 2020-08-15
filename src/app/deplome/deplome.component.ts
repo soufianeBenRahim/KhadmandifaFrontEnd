@@ -34,7 +34,7 @@ export class DeplomeComponent implements OnInit {
       if(this.deplomes==null){
         this.deplomes=[];
       }
-      this.deplomes.push(data.body);
+      this.deplomes.push(data);
       this.closebutton.nativeElement.click();
     },erreur=>{
       console.log('onAddDeplomeToCV erreur'+erreur);

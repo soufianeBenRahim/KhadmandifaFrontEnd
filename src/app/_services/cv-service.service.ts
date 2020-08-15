@@ -23,7 +23,9 @@ export class CvServiceService {
     return this.http.delete(AUTH_API+'CVs/Eperiance/'+id+'/delete',{observe : 'response'});
   }
   addDeplomeToCV(deplome: Deplome, idCv: any) {
-    return this.http.put<Deplome>(AUTH_API+'CVs/adddeplome?id='+idCv,deplome,{ observe: 'response' });
+    console.log(' parametre idcv : '+idCv)
+    console.log(' parametre deplome : '+deplome)
+    return this.http.put<Deplome>(AUTH_API+'CVs/adddeplome?id='+idCv.toString(),deplome);
   }
   delteDeplome(id: string) {
     return this.http.delete<Deplome>(AUTH_API+'CVs/deplomes/'+id+'/delete',{observe : 'response'});

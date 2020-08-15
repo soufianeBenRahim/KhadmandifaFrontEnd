@@ -11,7 +11,7 @@ const API_URL = 'http://localhost:8080/';
 })
 export class UserService {
   GetUserById(id : any): any {
-    return this.http.get(API_URL+"GetUserByID?id="+id, { responseType: 'text' });
+    return this.http.get(API_URL+"GetUserByID?id="+id);
   }
 
   constructor(private http: HttpClient) { }

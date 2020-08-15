@@ -78,6 +78,47 @@
               <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
               Deplomes
             </a>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalDeplome">
+              Ajouer un déplome
+              </button>
+                        
+              <div class="modal fade" id="myModalDeplome" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ajouter un Déplomee</h5>
+                    <button type="button" #closebuttonAddDeplome class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <form #f="ngForm" (ngSubmit)="onAddDeplomeToCV(f.value)" >
+                  <div class="modal-body">
+                    <div class="form-group">
+                      <label for="description">Description:</label>
+                      <input type="text" class="form-control" placeholder="Déscription" name ="description" ngModel>
+                    </div>
+                    <div class="form-group">
+                      <label for="organisation">Organisaion:</label>
+                      <input type="text" class="form-control" placeholder="Organisation" name ="organisataion" ngModel >
+                    </div>
+                    <div class="form-group">
+                      <label for="mois">Mois:</label>
+                      <input type="number" class="form-control" placeholder="mois" name ="mois" ngModel>
+                    </div>
+                    <div class="form-group">
+                      <label for="annee">annee:</label>
+                      <input type="number" class="form-control" placeholder="annee" name ="annee" ngModel>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button  type="submit" class="btn btn-primary" >Save changes</button>
+                  </div>
+                </form>
+                </div>
+              </div>
+                    </div>
             </div>
             <div id="collapseTwo" class="collapse" data-parent="#accordion">
               <div class="card-body">
