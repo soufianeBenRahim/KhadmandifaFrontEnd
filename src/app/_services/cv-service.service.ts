@@ -11,6 +11,9 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class CvServiceService {
+  addCompitance(compitance: Compitance, idCv: number) {
+    return this.http.post<Compitance>(AUTH_API+'CVs/addCompmitance?idCV='+idCv.toString(),compitance);
+  }
   addExperiance(experiance: Experiance, idCv: number) {
     return this.http.post<Experiance>(AUTH_API+'CVs/adddExperiance?id='+idCv.toString(),experiance);
   }

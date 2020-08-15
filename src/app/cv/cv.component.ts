@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { CvGlobale, Deplome, Experiance } from '../Model/CV';
+import { CvGlobale, Deplome, Experiance, Compitance } from '../Model/CV';
 import { CvServiceService } from '../_services/cv-service.service';
 
 
@@ -14,6 +14,7 @@ constructor(private cvService : CvServiceService) { }
 
 @ViewChild('closebuttonAddDeplome',{static: false}) closebuttonAddDeplome;
 @ViewChild('closebuttonAddExxperiance',{static: false}) closebuttonAddExxperiance;
+@ViewChild('closebuttonAddCompitance',{static: false}) closebuttonAddCompitance;
   ngOnInit() {
     
   console.log('cv recuperee dans le composent CV '+this.Cvg);
@@ -74,4 +75,21 @@ onDeleteCompitance(id){
     console.log(erruer);
   })
 }
+
+onAddCompitanceToCV(compitance :Compitance){
+  console.log('valeurs a ajouter '+compitance);
+  console.log('id cv : '+this.Cvg.cv.id);
+  this.cvService.addCompitance(compitance,this.Cvg.cv.id).subscribe(data=>{
+  console.log('onAddCompitanceToCV data '+data);
+  if(this.Cvg.compitances==null){
+        
+    this.Cvg.compitances=[];
+  }
+  this.Cvg.compitances.push(data);
+  this.closebuttonAddCompitance.nativeElement.click();
+  },erreur=>{
+    console.log('onAddCompitanceToCV erreur'+erreur);
+  })
+}
+
 }

@@ -98,7 +98,7 @@
 
                 
               </div>
-              <form #f="ngForm" (ngSubmit)="onAddDeplomeToCV(f.value)">
+              <form #fdep="ngForm" (ngSubmit)="onAddDeplomeToCV(fdep.value)">
                 <div class="modal-body">
                   <div class="form-group">
                     <label for="description">Description:</label>
@@ -166,7 +166,7 @@
 
               <!-- Modal body -->
               <div class="modal-body">
-                <form #f="ngForm" (ngSubmit)="onAddExperianceToCV(f.value)">
+                <form #fexper="ngForm" (ngSubmit)="onAddExperianceToCV(fexper.value)">
 
                   <div class="form-group">
                     <label for="Description">Description:</label>
@@ -234,7 +234,52 @@
         <a class="collapsed card-link" data-toggle="collapse" href="#collapsefor">
           Compitances
         </a>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalCompitance">
+          Ajouter une Compitance
+        </button>
+
+        <!-- The Modal -->
+        <div class="modal" id="myModalCompitance">
+          <div class="modal-dialog">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Compitances</h4>
+                <button type="button" #closebuttonAddCompitance class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                <form #fcomp="ngForm" (ngSubmit)="onAddCompitanceToCV(fcomp.value)">
+
+                  <div class="form-group">
+                    <label for="description">Désription:</label>
+                    <input type="text" class="form-control" placeholder="Désription" name="description" ngModel>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="pourcentage">Pourcentage:</label>
+                    <input type="number" class="form-control" placeholder="%" name="pourcentage" ngModel>
+                  </div>
+                 
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                  </div>  
+                 
+                </form>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+
       </div>
+      
       <div id="collapsefor" class="collapse" data-parent="#accordion">
         <div class="card-body">
           <div class="card" *ngFor="let c of Cvg.compitances">
