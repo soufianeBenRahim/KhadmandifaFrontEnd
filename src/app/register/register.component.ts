@@ -50,11 +50,6 @@ export class RegisterComponent implements OnInit {
                 console.log(error.message);
                 console.log('erreur');
             });;
-        // stop here if form is invalid
-
-
-        // display form values on success
-        alert('SUCCESS!! :-)');
     }
 
     onReset() {

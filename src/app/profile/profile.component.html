@@ -1,25 +1,27 @@
     
-<div class="container" style="margin-top:30px" >
+<div class="container" style="margin-top:30px " >
   <div class="row">
     <div class="col-sm-4">
-      <div *ngIf='SelectedUser'>
+      <div  *ngIf='SelectedUser'>
         <h2>Profile</h2>
-        <h5>Psudo:
+        <h6>Psudo:
           {{SelectedUser.username}}
-        </h5>
-        <h5>Email:
+        </h6>
+        <h6>Email:
           {{SelectedUser.email}}
-        </h5>
+        </h6>
+        <h6 *ngIf='SelectedUser.typeuser=="EUR"'>Emploiyeur</h6>
+        <h6 *ngIf='SelectedUser.typeuser=="EE"'>Emploiyee</h6>
       </div>
 
-      <h3>Plus de detail</h3>
+      <h4>Plus de detail</h4>
       <p>Liste des CVs.</p>
-      <ul class="nav nav-pills flex-column" *ngIf='SelectedUser'>
-          <li  class="nav-item" *ngFor="let c of CVgs">
-            <button class="btn btn-success" (click)="onSelectedCvCahge(c)">{{c.cv.designationCV}}</button>
+      <div class="list-group" *ngIf='SelectedUser'>
+  
+            <button type="button" (click)="onSelectedCvCahge(c)" *ngFor="let c of CVgs" class="btn btn-primary btn-sm btn-block">{{c.cv.designationCV}}</button>
 
-          </li>
-      </ul>
+        </div>
+
       <hr class="d-sm-none">
     </div>
     <div class="col-sm-8">
