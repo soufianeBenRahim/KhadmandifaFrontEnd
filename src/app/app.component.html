@@ -20,10 +20,10 @@
             روابط سريعة
           </a>
           <div class="dropdown-menu" >
-            <a class="dropdown-item"  (click)="onclickprofile()" >الملف الشخصي</a>
-            <a class="dropdown-item" href="#">إضافة مشروع</a>
-            <a class="dropdown-item" href="#">البخث عن مهمة</a>
-            <a class="dropdown-item" href="#">البخث عن شخص</a>
+            <a class="dropdown-item"  (click)="onclickprofile()" > Profil </a>
+            <a class="dropdown-item" href="#">Ajouter un projet</a>
+            <a class="dropdown-item" href="#">Recherche d'une mission</a>
+            <a class="dropdown-item" href="#">Chercher quelqu'un</a>
           </div>
 
         </li>
@@ -32,7 +32,7 @@
             <div class="input-group">
           <input type="text" class="form-control" placeholder="Search">
           <div class="input-group-append">
-           <button class="btn btn-secondary" type="submit">Search</button>
+           <button class="btn btn-primary" type="submit">Search</button>
           </div>
           </div>
           </form>
@@ -41,19 +41,19 @@
       
       <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
         <li class="nav-item">
-          <a href="/register" class="nav-link" routerLink="register">التسجيل</a>
+          <a href="/register" class="nav-link" routerLink="register">S'inscrire</a>
         </li>
         <li class="nav-item">
-          <a href="/login" class="nav-link" routerLink="['/login','/'']">الدخول</a>
+          <a href="/login" class="nav-link" routerLink="['/login','/'']">S'identifier</a>
         </li>
       </ul>
   
       <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
         <li class="nav-item">
-          <a class="nav-link" (click)="logout()">الخروج</a>
+          <a class="nav-link" (click)="logout()">Se déconnecter</a>
         </li>
         <li class="nav-item" *ngIf="iduser">
-          <a class="nav-link" (click)="onclickprofile()"  >الملف الشخصي</a>
+          <a class="nav-link" (click)="onclickprofile()"  >Profil</a>
         </li>
       </ul>
 
@@ -81,7 +81,7 @@
           <div class="carousel-caption text-left">
             <h1>Déposer des projet a réaliser.</h1>
             <p>Vous avez un emploi et ne pouvez pas embaucher un entrepreneur en raison du coût et vous ne connaissez pas une grande base de travailleurs professionnels, donc la meilleure solution est le service Khadma ndifa.</p>
-            <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+            <p><a class="btn btn-lg btn-primary" href="#" role="button">Inscrivez-vous aujourd'hui</a></p>
           </div>
         </div>
       </div>
@@ -91,7 +91,7 @@
           <div class="carousel-caption">
             <h1>Trouvez des projets à réaliser.</h1>
             <p>Si vous êtes qualifié et à la recherche de projets à réaliser et d'améliorer votre réputation professionnelle, Khadma ndifa est l'endroit idéal.</p>
-            <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+            <p><a class="btn btn-lg btn-primary" href="#" role="button">Apprendre encore plus</a></p>
           </div>
         </div>
       </div>
@@ -101,7 +101,7 @@
           <div class="carousel-caption text-right">
             <h1>System des notes.</h1>
             <p>Le système de notation permet au niveau d'expertise et d'honnêteté d'exceller dans leur travail.</p>
-            <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+            <p><a class="btn btn-lg btn-primary" href="#" role="button">Liste des projets</a></p>
           </div>
         </div>
       </div>
