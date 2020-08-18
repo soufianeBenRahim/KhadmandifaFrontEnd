@@ -22,6 +22,7 @@ import { ExperianceComponent } from './experiance/experiance.component';
 import { CompitanceComponent } from './compitance/compitance.component';
 import { CVComponent } from './cv/cv.component';
 import { EtatCivilComponent } from './etat-civil/etat-civil.component';
+import { ProjetComponent } from './projet/projet.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { EtatCivilComponent } from './etat-civil/etat-civil.component';
     CompitanceComponent,
     CVComponent,
     EtatCivilComponent,
+    ProjetComponent,
   ],
   imports: [
     BrowserModule,

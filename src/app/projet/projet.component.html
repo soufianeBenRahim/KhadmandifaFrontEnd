@@ -1,0 +1,11 @@
+<div class="list-group">
+    <a *ngFor='let p of projets' class="list-group-item list-group-item-action flex-column align-items-start active">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{p.description}}</h5>
+        <small>{{p.budjet}}</small>
+      </div>
+      <p class="mb-1">{{p.detail}}.</p>
+      <small>{{p.datePostilation}}</small>
+    </a>
+    
+  </div>

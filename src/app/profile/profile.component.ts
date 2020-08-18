@@ -6,6 +6,9 @@ import { UserService } from '../_services/user.service';
 import { CV, CvGlobale } from '../Model/CV';
 import { CvServiceService } from '../_services/cv-service.service';
 import { IAppUser } from '../Model/User';
+import { ProjectServiceService } from '../project-service.service';
+import { Projet } from '../Model/Projet';
+
 
 @Component({
   selector: 'app-profile',
@@ -16,10 +19,12 @@ export class ProfileComponent implements OnInit {
   CVgs :CvGlobale[];
   selectedCV :CvGlobale;
   SelectedUser:IAppUser;
+  projects:Projet[];
   constructor(private router:Router,
     private route:ActivatedRoute,
     private userserv : UserService,
-    private cvService : CvServiceService) { }
+    private cvService : CvServiceService,
+    private projectservice : ProjectServiceService) { }
 
   ngOnInit() {
 
@@ -27,16 +32,30 @@ export class ProfileComponent implements OnInit {
       params => 
       {
         console.log("param id"+params);
-        this.cvService.GetCVFromUser(params.id).subscribe(data=>{
-          console.log(data)
-          this.CVgs=data;
-        },err=>{
-          console.log(err);
-        });
+      
         this.userserv.GetUserById(params.id).subscribe(
           data=>{
             console.log('GetUserById in frofile compenete '+data)
             this.SelectedUser=data;
+            
+            if(this.SelectedUser.typeuser='EE'){
+              this.cvService.GetCVFromUser(params.id).subscribe(data=>{
+                console.log(data)
+                this.CVgs=data;
+              },err=>{
+                console.log(err);
+              });
+
+            }else{
+
+              this.projectservice.GetProjectsFromUser(params.id).subscribe(data=>{
+                console.log(data)
+                this.projects=data;
+              },err=>{
+                console.log(err);
+              });
+
+            }
           },err=>{
             console.log(err);
           }
@@ -48,6 +67,7 @@ export class ProfileComponent implements OnInit {
     }
     onSelectedCvCahge(c:CvGlobale){
       this.selectedCV=c;
+      console.log("type user : "+this.SelectedUser.typeuser);
       console.log("cv selectionner dans la page profile"+this.selectedCV);
     }
 

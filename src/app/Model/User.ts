@@ -8,7 +8,6 @@ export class  IAppUser
         id : number;
         roleName : String;
       }];
-     tarifhoraire : number;
-     resume :String; 
      email : String;
+     typeuser: string;
 }

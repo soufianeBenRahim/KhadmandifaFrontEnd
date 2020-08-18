@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IAppUser } from '../Model/User';
+import { Projet } from '../Model/Projet';
 
 
 const API_URL = 'http://localhost:8080/';
@@ -10,15 +11,15 @@ const API_URL = 'http://localhost:8080/';
   providedIn: 'root'
 })
 export class UserService {
-  GetUserById(id : any): any {
-    return this.http.get(API_URL+"GetUserByID?id="+id);
+  GetUserById(id : any) {
+    return this.http.get<IAppUser>(API_URL+"GetUserByID?id="+id);
   }
 
   constructor(private http: HttpClient) { }
 
-  getPublicContent(): Observable<any> {
-    console.log(API_URL+"PROJETs");
-    return this.http.get(API_URL+"projets", { responseType: 'text' });
+  getPublicContent() {
+    console.log(API_URL+"/projets");
+    return this.http.get<Projet[]>(API_URL+"projets");
   }
 
   getUserByName(name: String) {

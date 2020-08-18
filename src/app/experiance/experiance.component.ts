@@ -25,9 +25,7 @@ export class ExperianceComponent implements OnInit {
     console.log('valeurs a ajouter '+experiance);
     console.log('id cv : '+this.idCv);
     this.cvService.addExperiance(experiance,this.idCv).subscribe(data=>{
-console.log('onAddDeplomeToCV data '+data);
-
-
+    console.log('onAddDeplomeToCV data '+data);
     },erreur=>{
       console.log('onAddDeplomeToCV erreur'+erreur);
     })
