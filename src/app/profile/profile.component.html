@@ -1,41 +1,34 @@
-    
-<div class="container" *ngIf='SelectedUser' style="margin-top:30px " >
+<div class="container" *ngIf='SelectedUser' style="margin-top:30px ">
   <div class="row">
     <div class="col-sm-4">
-      
-        <h2>Profile</h2>
-        <h6>Psudo:
-          {{SelectedUser.username}}
-        </h6>
-        <h6>Email:
-          {{SelectedUser.email}}
-        </h6>
- 
+
+      <h2>Profile</h2>
+      <h6>Psudo:
+        {{SelectedUser.username}}
+      </h6>
+      <h6>Email:
+        {{SelectedUser.email}}
+      </h6>
+
       <h4>Plus de detail</h4>
-<div *ngIf='SelectedUser.typeuser=="EUR"'>
-  <h6 >Emploiyeur</h6>
-  <p>Liste des projets.</p>
-  <div class="list-group" *ngIf='SelectedUser'>
-    <button type="button" (click)="onSelectedCvCahge(c)" *ngFor="let p of projets" class="btn btn-primary btn-sm btn-block">{{p.description}}</button>
-</div>
-</div>
-<div *ngIf='SelectedUser.typeuser=="EE"'>
-  <h6 >Emploiyee</h6>
-  <p>Liste des CVs.</p>
-  <div class="list-group" *ngIf='SelectedUser'>
-        <button type="button" (click)="onSelectedCvCahge(c)" *ngFor="let c of CVgs" class="btn btn-primary btn-sm btn-block">{{c.cv.designationCV}}</button>
-  </div>
-</div>
-      
-     
+      <p></p>
+
+      <p>Liste des CVs.</p>
+      <div class="list-group" *ngIf='SelectedUser'>
+        <button type="button" (click)="onSelectedCvCahge(c)" *ngFor="let c of CVgs"
+          class="btn btn-primary btn-sm btn-block">{{c.cv.designationCV}}</button>
+      </div>
+      <p></p>
+
+
       <hr class="d-sm-none">
     </div>
     <div class="col-sm-8">
       <cv-component [Cvg]='selectedCV' *ngIf='selectedCV'></cv-component>
+      <p>Liste des projets.</p>
+      <app-projet [projects]='projects' ></app-projet>
+      <p></p>
     </div>
   </div>
 </div>
-
-
-
-  
+<p></p>

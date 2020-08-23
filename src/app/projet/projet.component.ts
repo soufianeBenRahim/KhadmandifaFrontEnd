@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Projet } from '../Model/Projet';
 
 
@@ -8,7 +8,10 @@ import { Projet } from '../Model/Projet';
   styleUrls: ['./projet.component.css']
 })
 export class ProjetComponent implements OnInit {
-  projects: Projet[];
+ 
+  @Input()  projects: Projet[];
+  curentProjet:Projet;
+  @Input() mode="liste"
   constructor() { }
 
   ngOnInit() {

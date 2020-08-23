@@ -36,17 +36,15 @@ export class ProfileComponent implements OnInit {
         this.userserv.GetUserById(params.id).subscribe(
           data=>{
             console.log('GetUserById in frofile compenete '+data)
+            console.log('typeuser '+data.typeuser+';')
             this.SelectedUser=data;
             
-            if(this.SelectedUser.typeuser='EE'){
-              this.cvService.GetCVFromUser(params.id).subscribe(data=>{
+             this.cvService.GetCVFromUser(params.id).subscribe(data=>{
                 console.log(data)
                 this.CVgs=data;
               },err=>{
                 console.log(err);
               });
-
-            }else{
 
               this.projectservice.GetProjectsFromUser(params.id).subscribe(data=>{
                 console.log(data)
@@ -55,8 +53,7 @@ export class ProfileComponent implements OnInit {
                 console.log(err);
               });
 
-            }
-          },err=>{
+               },err=>{
             console.log(err);
           }
         );

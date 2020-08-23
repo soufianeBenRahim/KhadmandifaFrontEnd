@@ -1,11 +1,29 @@
-<div class="list-group">
-    <a *ngFor='let p of projets' class="list-group-item list-group-item-action flex-column align-items-start active">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1">{{p.description}}</h5>
-        <small>{{p.budjet}}</small>
+<div class="container">
+  <div class="row row-cols-1 row-cols-md-2" >
+
+    <div class="col mb-4" *ngFor='let p of projects'>
+      <div class="card">
+        <div class="card-header">
+        <p> Propritaire du projet : {{p.emploiyeur.username}} </p>
+        <p> Date postutaltion : {{p.datePostilation | date: 'dd/MM/yyyy'}}</p> 
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{p.description}}</h5>
+          <p class="card-text">{{p.detail}}.</p>
+        </div>
       </div>
-      <p class="mb-1">{{p.detail}}.</p>
-      <small>{{p.datePostilation}}</small>
-    </a>
-    
+        <div class="card-footer text-muted">
+      
+      <div *ngIf="p.emploiyees">
+        Proposition de realisation par : {{p.emploiyees.count}}
+        <p  *ngFor="let u of p.emploiyees"> {{u.username}} </p>
+        <button type="button" (click)="onpostulationProjet(p)" 
+          class="btn btn-primary btn-sm btn-block">Demande de réalisation </button>
+      </div>
+    </div>
+    </div>
+  
   </div>
+  
+  
+</div>
