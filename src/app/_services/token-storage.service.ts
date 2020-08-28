@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { IAppUser } from '../Model/User';
 //import {JwtHelper} from 'angular2-jwt';
 
 const TOKEN_KEY = 'auth-token';
@@ -58,7 +59,7 @@ export class TokenStorageService {
   }
 
   public getUser() {
-    return JSON.parse(sessionStorage.getItem(USER_KEY));
+    return JSON.parse(sessionStorage.getItem(USER_KEY)) as IAppUser;
   }
   isTockenExpired(){
     let jwt=sessionStorage.getItem(TOKEN_KEY);
@@ -71,4 +72,5 @@ export class TokenStorageService {
     //  return jwthelper.isTokenExpired(jwt);
     }
   }
+
 }

@@ -24,7 +24,7 @@ export class UserService {
 
   getUserByName(name: String) {
     console.log("user service call getUserByName id name: "+name)
-    return this.http.get(API_URL + 'GetUserByName?name='+name);
+    return this.http.get(API_URL + 'GetUserByName?name='+name,{ responseType: 'text' });
   }
 
   getModeratorBoard(): Observable<any> {

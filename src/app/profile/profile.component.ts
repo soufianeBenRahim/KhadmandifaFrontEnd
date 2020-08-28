@@ -20,11 +20,13 @@ export class ProfileComponent implements OnInit {
   selectedCV :CvGlobale;
   SelectedUser:IAppUser;
   projects:Projet[];
+
   constructor(private router:Router,
     private route:ActivatedRoute,
     private userserv : UserService,
     private cvService : CvServiceService,
-    private projectservice : ProjectServiceService) { }
+    private projectservice : ProjectServiceService,
+    private localstorage : TokenStorageService) { }
 
   ngOnInit() {
 
@@ -36,7 +38,7 @@ export class ProfileComponent implements OnInit {
         this.userserv.GetUserById(params.id).subscribe(
           data=>{
             console.log('GetUserById in frofile compenete '+data)
-            console.log('typeuser '+data.typeuser+';')
+            
             this.SelectedUser=data;
             
              this.cvService.GetCVFromUser(params.id).subscribe(data=>{
@@ -62,9 +64,10 @@ export class ProfileComponent implements OnInit {
       }
       )
     }
+
     onSelectedCvCahge(c:CvGlobale){
       this.selectedCV=c;
-      console.log("type user : "+this.SelectedUser.typeuser);
+     
       console.log("cv selectionner dans la page profile"+this.selectedCV);
     }
 

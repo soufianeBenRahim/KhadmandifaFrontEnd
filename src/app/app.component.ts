@@ -3,8 +3,7 @@ import { TokenStorageService } from './_services/token-storage.service';
 import { AuthService } from './_services/auth.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
-import { CvServiceService} from './_services/cv-service.service'
-import { IAppUser } from './Model/User';
+
 
 @Component({
   selector: 'app-root',
@@ -14,50 +13,43 @@ import { IAppUser } from './Model/User';
 export class AppComponent implements OnInit {
   isLoggedIn = false;
   isConnectedSubscription: Subscription;
-
-  iduser :string;
-  
+  item
   constructor(private tokenStorageService: TokenStorageService,
     private authenticationService:AuthService,
-    private router:Router,
-    private cvServices :CvServiceService) { }
+    private router:Router) { }
 
   ngOnInit() {
 
-   let item = this.tokenStorageService.getUser();
-   this.iduser=item;
-   console.log('user on init componet token '+item);
-   this.isLoggedIn=!!this.tokenStorageService.getUser();
-   console.log('is loged ='+this.isLoggedIn);
+   this.item = this.tokenStorageService.getUser()[0];
+
    this.ActiveShortCut();
-    this.isConnectedSubscription=this.authenticationService.getIsConnectedObservabel().subscribe(message => {
+    this.isConnectedSubscription=this.authenticationService
+    .getIsConnectedObservabel().subscribe(message => {
         if ("connected"==message.text) {
           console.log("connected");
-          this.iduser=this.tokenStorageService.getUser();
-          console.log( 'app compennete int user observe :'+this.iduser);
           this.isLoggedIn =true;
         } else if("desconected"==message.text){
           console.log("desconected");
           // clear messages when empty message received
           this.isLoggedIn =false;
-          this.iduser=null;
         }
     },err=>{
       console.log(err);
     });
   }
 ActiveShortCut(){
-   
-  if(this.iduser){
-    this.isLoggedIn =true;
-    }else{
-    this.isLoggedIn =false;
-  }
+   console.log('ActiveShortCut on init component '+this.item);
+   if(this.item== undefined || this.item==null)
+   {
+    this.isLoggedIn=false;
+   }else{
+    this.isLoggedIn=true;
+   }    
  }
  onclickprofile(){
-   console.log("onclickprofile"+this.iduser );
-   console.log('is loged ='+this.isLoggedIn);
-  this.router.navigate(['/profile',this.iduser]);
+   
+  console.log('is loged ='+this.isLoggedIn);
+  this.router.navigate(['/profile',this.item.id]);
  }
   logout() {
     this.authenticationService.logOut();

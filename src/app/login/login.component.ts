@@ -26,13 +26,16 @@ export class LoginComponent implements OnInit {
         private userService : UserService
     ) { 
         // redirect to home if already logged in
+        console.log("constructor tocken  : "+this.tockenstorage.getToken());
         if (this.tockenstorage.getToken()) { 
+            console.log(" has tocken : "+this.tockenstorage.getToken());
             authenticationService.sendIsConnectedObservabel();
             this.router.navigate(['/']);
         }
     }
 
     ngOnInit() {
+        console.log(" on init login  : ");
         this.loginForm = this.formBuilder.group({
             username: ['', Validators.required],
             password: ['', Validators.required]
@@ -68,7 +71,7 @@ export class LoginComponent implements OnInit {
                       dataUser => {
                           console.log('user getUserByName '+dataUser);
                           let appuser= dataUser ;
-                        this.tockenstorage.saveUser(appuser[0].id);
+                        this.tockenstorage.saveUser(appuser);
                         console.log('user connectee '+this.f.username.value);
                         console.log('data user '+appuser);
                         this.router.navigate([this.returnUrl]);

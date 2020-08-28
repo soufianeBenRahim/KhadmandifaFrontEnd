@@ -15,7 +15,7 @@
       <ul class="navbar-nav">
   
         <!-- Dropdown -->
-        <li class="nav-item dropdown" *ngIf='iduser'>
+        <li class="nav-item dropdown" *ngIf="isLoggedIn">
           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
             Liens rapides
           </a>
@@ -23,7 +23,6 @@
             <a class="dropdown-item"  (click)="onclickprofile()" > Profil </a>
             <a class="dropdown-item" href="#">Ajouter un projet</a>
             <a class="dropdown-item" href="#">Recherche d'une mission</a>
-            <a class="dropdown-item" href="#">Chercher quelqu'un</a>
           </div>
 
         </li>
@@ -41,10 +40,10 @@
       
       <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
         <li class="nav-item">
-          <a href="/register" class="nav-link" routerLink="register">S'inscrire</a>
+          <a class="nav-link" routerLink="register">S'inscrire</a>
         </li>
         <li class="nav-item">
-          <a href="/login" class="nav-link" routerLink="['/login','/'']">S'identifier</a>
+          <a class="nav-link" routerLink="login">S'identifier</a>
         </li>
       </ul>
   
@@ -52,7 +51,7 @@
         <li class="nav-item">
           <a class="nav-link" (click)="logout()">Se déconnecter</a>
         </li>
-        <li class="nav-item" *ngIf="iduser">
+        <li class="nav-item" >
           <a class="nav-link" (click)="onclickprofile()"  >Profil</a>
         </li>
       </ul>
@@ -81,7 +80,7 @@
           <div class="carousel-caption text-left">
             <h1 >Déposer des projet a réaliser.</h1>
             <p >Vous avez un emploi et ne pouvez pas embaucher un entrepreneur en raison du coût et vous ne connaissez pas une grande base de travailleurs professionnels, donc la meilleure solution est le service Khadma ndifa.</p>
-            <p><a class="btn btn-lg btn-primary" href="#" role="button">Inscrivez-vous aujourd'hui</a></p>
+            <p><a class="btn btn-lg btn-primary" routerLink="register" role="button">Inscrivez-vous aujourd'hui</a></p>
           </div>
         </div>
       </div>
@@ -101,7 +100,7 @@
           <div class="carousel-caption text-right">
             <h1>System des notes.</h1>
             <p>Le système de notation permet au niveau d'expertise et d'honnêteté d'exceller dans leur travail.</p>
-            <p><a class="btn btn-lg btn-primary" href="#" role="button">Liste des projets</a></p>
+            <p><a class="btn btn-lg btn-primary" routerLink="/home" role="button">Liste des projets</a></p>
           </div>
         </div>
       </div>
