@@ -23,6 +23,8 @@ import { CompitanceComponent } from './compitance/compitance.component';
 import { CVComponent } from './cv/cv.component';
 import { EtatCivilComponent } from './etat-civil/etat-civil.component';
 import { ProjetComponent } from './projet/projet.component';
+import { UpdateProjectComponent } from './update-project/update-project.component';
+import { UpdateCVComponent } from './update-cv/update-cv.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { ProjetComponent } from './projet/projet.component';
     CVComponent,
     EtatCivilComponent,
     ProjetComponent,
+    UpdateProjectComponent,
+    UpdateCVComponent,
   ],
   imports: [
     BrowserModule,

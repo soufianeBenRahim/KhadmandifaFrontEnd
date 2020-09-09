@@ -1,0 +1,60 @@
+<div class="modal fade" id="myModalEtatCivile" tabindex="-1" role="dialog" 
+aria-labelledby="ModalLabelEtatCivile" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalLabelEtatCivile">
+           <div *ngIf="modeInsert"> Ajouter un cv </div>
+           <div *ngIf="!modeInsert"> Modifier l'etat Cvile </div>
+        </h5>
+        <button type="button" #closebuttonUpdateCV class="close" data-dismiss="modal" 
+        aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+
+        
+      </div>
+      <form #fcv="ngForm" (ngSubmit)="onUpdateCV(fcv.value)">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="description">nom:</label>
+            <input type="text" class="form-control" placeholder="nom"   name="nom" ngModel>
+ 
+          </div>
+          <div class="form-group">
+            <label for="organisation">prenom:</label>
+            <input type="text" class="form-control" placeholder="prenom"   name="prenom" ngModel>
+ 
+          </div>
+          <div class="form-group">
+            <label for="organisation">Etat civile :</label>
+            <input type="text" class="form-control" placeholder="Etat civile" name="etatcivile"  ngModel>
+          
+          </div>
+          <div class="form-group">
+            <label for="organisation">Adress :</label>
+            <input type="text" class="form-control" placeholder="Adress" name="adress" ngModel>
+    
+          </div>
+          <div class="form-group">
+            <label for="organisation">Email :</label>
+            <input type="text" class="form-control" placeholder="Email"  name="email" ngModel>
+  
+          </div>
+
+          <div class="form-group">
+            <label for="organisation">Tel :</label>
+            <input type="text" class="form-control" placeholder="Tel." name="tel" ngModel>
+         
+          </div>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+          <button type="submit" class="btn btn-primary">Sauvgarder</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

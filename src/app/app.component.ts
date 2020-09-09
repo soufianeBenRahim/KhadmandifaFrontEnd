@@ -25,6 +25,7 @@ export class AppComponent implements OnInit {
    this.ActiveShortCut();
     this.isConnectedSubscription=this.authenticationService
     .getIsConnectedObservabel().subscribe(message => {
+      console.log(" receverd mesdage : "+message);
         if ("connected"==message.text) {
           console.log("connected");
           this.isLoggedIn =true;
@@ -58,5 +59,9 @@ ActiveShortCut(){
   ngOnDestroy() {
     // unsubscribe to ensure no memory leaks
     this.isConnectedSubscription.unsubscribe();
+  }
+  onAddProject(){
+    console.log('open project mode fiche');
+    this.router.navigate(['/project','fiche']);
   }
 }

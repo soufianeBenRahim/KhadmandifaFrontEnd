@@ -10,15 +10,24 @@ import { CvServiceService } from '../_services/cv-service.service';
 })
 export class CVComponent implements OnInit {
 constructor(private cvService : CvServiceService) { }
-@Input() Cvg : CvGlobale;
-
+@Input() Cvg:CvGlobale;
 @ViewChild('closebuttonAddDeplome',{static: false}) closebuttonAddDeplome;
 @ViewChild('closebuttonAddExxperiance',{static: false}) closebuttonAddExxperiance;
 @ViewChild('closebuttonAddCompitance',{static: false}) closebuttonAddCompitance;
+modeInsetCV: boolean =undefined;
   ngOnInit() {
     
-  console.log('cv recuperee dans le composent CV '+this.Cvg);
+  
   }
+
+  onAppelUpdateCV(){
+    this.modeInsetCV=false;
+  }
+
+  onAppelAddCV(){
+    this.modeInsetCV=true;
+  }
+
    onDeleteDeplome( id :string){
     this.cvService.delteDeplome(id).subscribe(data=>{
       console.log(' delete data :'+data);

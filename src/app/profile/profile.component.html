@@ -12,6 +12,8 @@
 
       <h4>Plus de detail</h4>
       <p></p>
+      
+     
 
       <p>Liste des CVs.</p>
       <div class="list-group" *ngIf='SelectedUser'>
@@ -24,9 +26,9 @@
       <hr class="d-sm-none">
     </div>
     <div class="col-sm-8">
-      <cv-component [Cvg]='selectedCV' *ngIf='selectedCV'></cv-component>
+      <cv-component [Cvg]='selectedCV'></cv-component>
       <p>Liste des projets.</p>
-      <app-projet [projects]='projects' ></app-projet>
+      <app-projet [projects]='projects'></app-projet>
       <p></p>
     </div>
   </div>

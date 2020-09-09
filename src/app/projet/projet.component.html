@@ -1,29 +1,67 @@
-<div class="container">
-  <div class="row row-cols-1 row-cols-md-2" >
 
-    <div class="col mb-4" *ngFor='let p of projects'>
-      <div class="card">
-        <div class="card-header">
-        <p> Propritaire du projet : {{p.emploiyeur.username}} </p>
-        <p> Date postutaltion : {{p.datePostilation | date: 'dd/MM/yyyy'}}</p> 
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">{{p.description}}</h5>
-          <p class="card-text">{{p.detail}}.</p>
-        </div>
+{{'mode insert = '+modeinsert}}
+<div *ngIf="modeinsert==='fiche'">
+
+  <form #fproj="ngForm" (ngSubmit)="onUpdateProject(fproj.value)">
+
+      <div class="form-group">
+        <label for="description">Déscription :</label>
+        <input type="text" class="form-control" placeholder="" name="description" [value]=" curentProjet?.description">
       </div>
-        <div class="card-footer text-muted">
-      
-      <div *ngIf="p.emploiyees">
-        Proposition de realisation par : {{p.emploiyees.count}}
-        <p  *ngFor="let u of p.emploiyees"> {{u.username}} </p>
-        <button type="button" (click)="onpostulationProjet(p)" 
-          class="btn btn-primary btn-sm btn-block">Demande de réalisation </button>
+      <div class="form-group">
+        <label for="organisation">detail:</label>
+        <input type="text" class="form-control" placeholder="" name="detail" [value]=" curentProjet?.detail">
       </div>
+ 
+      <div class="form-group">
+      <button type="submit" class="btn btn-primary">Sauvgarder</button>
+      <button type="button" class="btn btn-secondary" (click)="oncanelpdate()" >Fermer</button>
     </div>
-    </div>
+  </form>
   
-  </div>
   
   
 </div>
+<div  *ngIf="modeinsert==='liste'">
+
+  
+  
+  <p></p>
+  <div class="container">
+    <div class="row row-cols-1 row-cols-md-2" >
+      <button type="button" class="btn btn-primary" (click)="onclickAjoutProject()" data-toggle="modal" data-target="#mayModallclaProet">
+        Ajouer un projet
+      </button>
+      <div class="col mb-4" *ngFor='let p of projects'>
+        <div class="card">
+          <div class="card-header">
+          <p> Propritaire du projet : {{p.emploiyeur.username}} </p>
+          <p> Date postutaltion : {{p.datePostilation | date: 'dd/MM/yyyy'}}</p> 
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{p.description}}</h5>
+            <p class="card-text">{{p.detail}}.</p>
+          </div>
+        </div>
+          <div class="card-footer text-muted">
+            <button type="button" class="btn btn-primary" (click)="onclickModifProject(p)" 
+            class="btn btn-primary" data-toggle="modal" data-target="#mayModallclaProet" >
+              Modifier un projet
+            </button>
+        <div *ngIf="p.emploiyees">
+          Proposition de realisation par : {{p.emploiyees.count}}
+          <p  *ngFor="let u of p.emploiyees"> {{u.username}} </p>
+          <button type="button" (click)="onpostulationProjet(p)"  
+            class="btn btn-primary btn-sm btn-block">Demande de réalisation </button>
+        </div>
+      </div>
+      </div>
+    
+    </div>
+    
+    
+  </div>
+</div>
+
+<app-update-project [localID]="'mayModallclaProet'" [selectedProject]="curentProjet"></app-update-project>
+  

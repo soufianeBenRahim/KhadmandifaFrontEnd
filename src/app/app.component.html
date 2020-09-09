@@ -1,3 +1,4 @@
+<app-update-project [localID]="'maymodalProjectMenue'"></app-update-project>
 <div id="app">
   <nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <!-- Brand -->
@@ -21,7 +22,7 @@
           </a>
           <div class="dropdown-menu" >
             <a class="dropdown-item"  (click)="onclickprofile()" > Profil </a>
-            <a class="dropdown-item" href="#">Ajouter un projet</a>
+            <a class="dropdown-item" data-toggle="modal" data-target="#maymodalProjectMenue" >Ajouter un projet</a>
             <a class="dropdown-item" href="#">Recherche d'une mission</a>
           </div>
 
@@ -100,7 +101,7 @@
           <div class="carousel-caption text-right">
             <h1>System des notes.</h1>
             <p>Le système de notation permet au niveau d'expertise et d'honnêteté d'exceller dans leur travail.</p>
-            <p><a class="btn btn-lg btn-primary" routerLink="/home" role="button">Liste des projets</a></p>
+            <p><a class="btn btn-lg btn-primary" routerLink="/project/liste" role="button">Liste des projets</a></p>
           </div>
         </div>
       </div>

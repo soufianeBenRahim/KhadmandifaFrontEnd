@@ -9,6 +9,7 @@ import { BoardUserComponent } from './board-user/board-user.component';
 import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { AuthGuard } from './_helpers/Auth.guard ';
 import { CVComponent } from './cv/cv.component';
+import { ProjetComponent } from './projet/projet.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent , canActivate : [AuthGuard]  },
@@ -18,8 +19,9 @@ const routes: Routes = [
   { path: 'profile/:id', component: ProfileComponent, canActivate : [AuthGuard] },
   { path: 'user', component: BoardUserComponent , canActivate : [AuthGuard]},
   { path: 'admin', component: BoardAdminComponent , canActivate : [AuthGuard]},
-  { path: '**', redirectTo: 'home', pathMatch: 'full' , canActivate: [AuthGuard]},
-  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'project/:mode', component: ProjetComponent },
+  { path: '**', redirectTo: 'home', pathMatch: 'full'},
+  { path: '', component: HomeComponent},
 ];
 
 @NgModule({

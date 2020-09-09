@@ -21,12 +21,12 @@ export class ProfileComponent implements OnInit {
   SelectedUser:IAppUser;
   projects:Projet[];
 
-  constructor(private router:Router,
+  constructor(
     private route:ActivatedRoute,
     private userserv : UserService,
     private cvService : CvServiceService,
-    private projectservice : ProjectServiceService,
-    private localstorage : TokenStorageService) { }
+    private projectservice : ProjectServiceService
+    ) { }
 
   ngOnInit() {
 
@@ -47,9 +47,9 @@ export class ProfileComponent implements OnInit {
               },err=>{
                 console.log(err);
               });
-
+              console.log('demmande des proets pour le cv');
               this.projectservice.GetProjectsFromUser(params.id).subscribe(data=>{
-                console.log(data)
+                console.log('projet de cv '+data)
                 this.projects=data;
               },err=>{
                 console.log(err);
@@ -67,9 +67,18 @@ export class ProfileComponent implements OnInit {
 
     onSelectedCvCahge(c:CvGlobale){
       this.selectedCV=c;
-     
+
       console.log("cv selectionner dans la page profile"+this.selectedCV);
     }
+    onAddCv(){
 
+      this.selectedCV=undefined;
+      console.log("ajouter un cv ");
+    }
+
+    onProjet(){
+
+      console.log("ajouter un un projet ");
+    }
 }
 
