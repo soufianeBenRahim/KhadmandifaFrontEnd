@@ -5,7 +5,6 @@ import { first } from 'rxjs/operators';
 import { AuthService } from '../_services/auth.service';
 import {TokenStorageService} from '../_services/token-storage.service'
 import { UserService } from '../_services/user.service';
-import { IAppUser } from '../Model/User';
 
 
 @Component({ templateUrl: 'login.component.html' })

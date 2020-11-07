@@ -1,5 +1,4 @@
 
-{{'mode insert = '+modeinsert}}
 <div *ngIf="modeinsert==='fiche'">
 
   <form #fproj="ngForm" (ngSubmit)="onUpdateProject(fproj.value)">
@@ -9,8 +8,12 @@
         <input type="text" class="form-control" placeholder="" name="description" [value]=" curentProjet?.description">
       </div>
       <div class="form-group">
-        <label for="organisation">detail:</label>
+        <label for="detail">detail:</label>
         <input type="text" class="form-control" placeholder="" name="detail" [value]=" curentProjet?.detail">
+      </div>
+      <div class="form-group">
+        <label for="budjet">Budjet:</label>
+        <input type="number" class="form-control" placeholder="" name="budjet"   [(ngModel)]="selectedProject.budjet">
       </div>
  
       <div class="form-group">
@@ -28,10 +31,12 @@
   
   <p></p>
   <div class="container">
+    <button type="button" class="btn btn-primary" (click)="onclickAjoutProject()" data-toggle="modal" data-target="#mayModalloclaProjet">
+      Ajouer un projet
+    </button>
+    <p></p>
     <div class="row row-cols-1 row-cols-md-2" >
-      <button type="button" class="btn btn-primary" (click)="onclickAjoutProject()" data-toggle="modal" data-target="#mayModallclaProet">
-        Ajouer un projet
-      </button>
+    
       <div class="col mb-4" *ngFor='let p of projects'>
         <div class="card">
           <div class="card-header">
@@ -41,11 +46,12 @@
           <div class="card-body">
             <h5 class="card-title">{{p.description}}</h5>
             <p class="card-text">{{p.detail}}.</p>
+            <p class="card-text">Budjet  : {{p.budjet |  number : '1.2-2'}}.</p>
           </div>
-        </div>
+        </div> 
           <div class="card-footer text-muted">
             <button type="button" class="btn btn-primary" (click)="onclickModifProject(p)" 
-            class="btn btn-primary" data-toggle="modal" data-target="#mayModallclaProet" >
+            class="btn btn-primary" data-toggle="modal" data-target="#mayModalloclaProjet" >
               Modifier un projet
             </button>
         <div *ngIf="p.emploiyees">
@@ -63,5 +69,6 @@
   </div>
 </div>
 
-<app-update-project [localID]="'mayModallclaProet'" [selectedProject]="curentProjet"></app-update-project>
+<app-update-project [localID]="'mayModalloclaProjet'" [selectedProject]="curentProjet"
+(update)="onUpdate($event)" (add)="onAdd($event)"></app-update-project>
   

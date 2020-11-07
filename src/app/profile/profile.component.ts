@@ -5,7 +5,7 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { UserService } from '../_services/user.service';
 import { CV, CvGlobale } from '../Model/CV';
 import { CvServiceService } from '../_services/cv-service.service';
-import { IAppUser } from '../Model/User';
+import { AppUser } from '../Model/User';
 import { ProjectServiceService } from '../project-service.service';
 import { Projet } from '../Model/Projet';
 
@@ -18,7 +18,7 @@ import { Projet } from '../Model/Projet';
 export class ProfileComponent implements OnInit {
   CVgs :CvGlobale[];
   selectedCV :CvGlobale;
-  SelectedUser:IAppUser;
+  SelectedUser:AppUser;
   projects:Projet[];
 
   constructor(

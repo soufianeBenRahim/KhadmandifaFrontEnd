@@ -1,5 +1,7 @@
-import { Component, OnInit, Output, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Output,EventEmitter, Input, ViewChild } from '@angular/core';
+
 import { Projet } from '../Model/Projet';
+import { ProjectServiceService } from '../project-service.service';
 
 @Component({
   selector: 'app-update-project',
@@ -9,19 +11,61 @@ import { Projet } from '../Model/Projet';
 
 export class UpdateProjectComponent implements OnInit {
   @ViewChild('closebuttonModofoerprojet',{static: false}) closebuttonModofoerprojet;
-  constructor() { }
+  constructor(private projetService : ProjectServiceService) { }
   @Input() localID:'myModalProjet';
   @Input() selectedProject:Projet;
-  
+  @Output() update: EventEmitter<Projet> = new EventEmitter();
+  @Output() add: EventEmitter<Projet> = new EventEmitter();
   ngOnInit() {
 
   }
   onUpdateProject(project){
-    if(this.selectedProject==undefined){
+    this.selectedProject.description=project.description;
+    this.selectedProject.detail=project.detail;
+    console.log("projet envoiyee au update : "+project.detail);
+    if(this.getModeInsert()==true){
       console.log("ajouer ");
+      this.saveNewProjet(this.selectedProject)
     }else{
       console.log("modifier ");
+      this.updateProjet(this.selectedProject)
     }
     this.closebuttonModofoerprojet.nativeElement.click();
+  }
+  getModeInsert(){
+   
+    if(this.selectedProject==undefined || this.selectedProject.id==undefined)
+    return true
+    else
+    return false
+  }
+updateProjet(proj){
+  console.log("projet envoiyee au update : "+proj);
+  
+  this.projetService.updateProjet(proj).subscribe(
+    (result: Projet) => {
+       if(result.id){
+        console.log('succes') 
+        this.update.emit(result);
+       }
+    },
+    error => {
+  console.log(error)
+    }
+);
+}
+  saveNewProjet(proj: Projet){
+
+    this.projetService.addProjet(proj,4).subscribe(
+            (result: Projet) => {
+               if(result.id){
+                this.add.emit(result);
+               }
+               console.log(result)
+            },
+            error => {
+               console.log(error)
+            }
+    );
   }
 }

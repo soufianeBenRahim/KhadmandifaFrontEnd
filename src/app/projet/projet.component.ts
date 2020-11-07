@@ -14,7 +14,8 @@ export class ProjetComponent implements OnInit {
  
   @Input()  projects: Projet[];
 
-  curentProjet:Projet;
+  
+  public curentProjet=new Projet();
   constructor(private route:ActivatedRoute,
     private userService: UserService,
     private router:Router) { }
@@ -44,14 +45,36 @@ export class ProjetComponent implements OnInit {
       });
   }
   onclickModifProject(project){
-    this.curentProjet=project;
+    
+    this.curentProjet=Object.assign({}, project);
+    console.log(this.curentProjet)
    // this.router.navigate(['/project','fiche']);
   }
   onclickAjoutProject(){
-    this.curentProjet= undefined;
+    this.curentProjet= new Projet();
+    console.log(this.curentProjet)
    // this.router.navigate(['/project','fiche']);
   }
   oncanelpdate(){
     this.router.navigate(['/project','liste']);
   }
+  onUpdate(projet){
+    console.log(" projet a Modifier par le fils :"+projet)
+    let index : number = 0; 
+    if(this.projects && this.projects.length > 0){
+        this.projects.forEach(element => {
+            if(element.id == projet.id){
+                this.projects.splice(index, 1, projet);
+        
+            }
+            index++;
+        });
+    }
+  } 
+
+
+  onAdd(projet){
+    console.log(" projet a jouter par le fils :"+projet)
+    this.projects.push(projet)
+  };
 }

@@ -1,13 +1,14 @@
-import { IAppUser } from './User';
+import { AppUser } from './User';
 
 
-export interface Projet{
+export class Projet{
     id : number;
     description : String ;
-    createdBy : IAppUser ;
+    createdBy : AppUser ;
     datePostilation : Date;
     dateFin :Date;
     budjet : number;
     etatProjet : boolean ;
     pourcentage : number;
+    detail:string;
 }
