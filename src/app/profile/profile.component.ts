@@ -8,6 +8,7 @@ import { CvServiceService } from '../_services/cv-service.service';
 import { AppUser } from '../Model/User';
 import { ProjectServiceService } from '../project-service.service';
 import { Projet } from '../Model/Projet';
+import { element } from 'protractor';
 
 
 @Component({
@@ -16,69 +17,76 @@ import { Projet } from '../Model/Projet';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  CVgs :CvGlobale[];
-  selectedCV :CvGlobale;
-  SelectedUser:AppUser;
-  projects:Projet[];
+  CVgs: CvGlobale[];
+  selectedCV: CvGlobale;
+  SelectedUser: AppUser;
+  projects: Projet[];
 
   constructor(
-    private route:ActivatedRoute,
-    private userserv : UserService,
-    private cvService : CvServiceService,
-    private projectservice : ProjectServiceService
-    ) { }
+    private route: ActivatedRoute,
+    private userserv: UserService,
+    private cvService: CvServiceService,
+    private projectservice: ProjectServiceService
+  ) { }
 
   ngOnInit() {
 
-      this.route.params.subscribe(
-      params => 
-      {
-        console.log("param id"+params);
-      
-        this.userserv.GetUserById(params.id).subscribe(
-          data=>{
-            console.log('GetUserById in frofile compenete '+data)
-            
-            this.SelectedUser=data;
-            
-             this.cvService.GetCVFromUser(params.id).subscribe(data=>{
-                console.log(data)
-                this.CVgs=data;
-              },err=>{
-                console.log(err);
-              });
-              console.log('demmande des proets pour le cv');
-              this.projectservice.GetProjectsFromUser(params.id).subscribe(data=>{
-                console.log('projet de cv '+data)
-                this.projects=data;
-              },err=>{
-                console.log(err);
-              });
+    this.route.params.subscribe(
+      params => {
+        console.log("param id" + params);
 
-               },err=>{
+        this.userserv.GetUserById(params.id).subscribe(
+          data => {
+            console.log('GetUserById in frofile compenete ' + data)
+
+            this.SelectedUser = data;
+
+            this.cvService.GetCVFromUser(params.id).subscribe(data => {
+              console.log(data)
+              this.CVgs = data;
+            }, err => {
+              console.log(err);
+            });
+            console.log('demmande des proets pour le cv');
+            this.projectservice.GetProjectsFromUser(params.id).subscribe(data => {
+              console.log('projet de cv ' + data)
+              this.projects = data;
+            }, err => {
+              console.log(err);
+            });
+
+          }, err => {
             console.log(err);
           }
         );
-      },erruer=>{
+      }, erruer => {
         console.log(erruer)
       }
-      )
+    )
+  }
+
+
+  onSelectedCvCahge(c: CvGlobale) {
+    this.selectedCV = c;
+
+    console.log("cv selectionner dans la page profile" + this.selectedCV);
+  }
+
+  onAddCv(cv) {
+    let cvg1 = new CvGlobale();
+    cvg1.cv = cv;
+    this.CVgs = [cvg1, ...this.CVgs]
+  }
+  onUpdateCv(cv) {
+    if (this.CVgs != null && this.CVgs.length > 0) {
+      let index = 1;
+      this.CVgs.forEach(element => {
+        if (element.cv.id == cv.id) {
+          element.cv = cv;
+        }
+      });
     }
+  }
 
-    onSelectedCvCahge(c:CvGlobale){
-      this.selectedCV=c;
-
-      console.log("cv selectionner dans la page profile"+this.selectedCV);
-    }
-    onAddCv(){
-
-      this.selectedCV=undefined;
-      console.log("ajouter un cv ");
-    }
-
-    onProjet(){
-
-      console.log("ajouter un un projet ");
-    }
 }
 

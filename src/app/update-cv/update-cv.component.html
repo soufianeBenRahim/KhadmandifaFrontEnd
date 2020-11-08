@@ -15,37 +15,37 @@ aria-labelledby="ModalLabelEtatCivile" aria-hidden="true">
 
         
       </div>
-      <form #fcv="ngForm" (ngSubmit)="onUpdateCV(fcv.value)">
+      <form #fcv="ngForm" (ngSubmit)="onUpdateCV(fcv.value)" >  
         <div class="modal-body">
           <div class="form-group">
             <label for="description">nom:</label>
-            <input type="text" class="form-control" placeholder="nom"   name="nom" ngModel>
+            <input type="text" class="form-control" placeholder="nom"   name="nom" [(ngModel)]=selectedCv.nom>
  
           </div>
           <div class="form-group">
             <label for="organisation">prenom:</label>
-            <input type="text" class="form-control" placeholder="prenom"   name="prenom" ngModel>
+            <input type="text" class="form-control" placeholder="prenom"   name="prenom" [(ngModel)]=selectedCv.prenom>
  
           </div>
           <div class="form-group">
             <label for="organisation">Etat civile :</label>
-            <input type="text" class="form-control" placeholder="Etat civile" name="etatcivile"  ngModel>
+            <input type="text" class="form-control" placeholder="Etat civile" name="etatcivile"  [(ngModel)]=selectedCv.etatcivile>
           
           </div>
           <div class="form-group">
             <label for="organisation">Adress :</label>
-            <input type="text" class="form-control" placeholder="Adress" name="adress" ngModel>
+            <input type="text" class="form-control" placeholder="Adress" name="adress" [(ngModel)]=selectedCv.adress>
     
           </div>
           <div class="form-group">
             <label for="organisation">Email :</label>
-            <input type="text" class="form-control" placeholder="Email"  name="email" ngModel>
+            <input type="text" class="form-control" placeholder="Email"  name="email" [(ngModel)]=selectedCv.email>
   
           </div>
 
           <div class="form-group">
             <label for="organisation">Tel :</label>
-            <input type="text" class="form-control" placeholder="Tel." name="tel" ngModel>
+            <input type="text" class="form-control" placeholder="Tel." name="tel"  [(ngModel)]=selectedCv.tel>
          
           </div>
           

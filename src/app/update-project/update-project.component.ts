@@ -12,7 +12,7 @@ import { ProjectServiceService } from '../project-service.service';
 export class UpdateProjectComponent implements OnInit {
   @ViewChild('closebuttonModofoerprojet',{static: false}) closebuttonModofoerprojet;
   constructor(private projetService : ProjectServiceService) { }
-  @Input() localID:'myModalProjet';
+  @Input() localID:string;
   @Input() selectedProject:Projet;
   @Output() update: EventEmitter<Projet> = new EventEmitter();
   @Output() add: EventEmitter<Projet> = new EventEmitter();

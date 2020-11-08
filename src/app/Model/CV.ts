@@ -38,7 +38,7 @@ export interface Deplome
        organisataion : String;
 
     }
-   export interface CvGlobale
+   export class CvGlobale
    {
     cv:CV;
     deplomes :Deplome[];

@@ -11,6 +11,9 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class CvServiceService {
+  addCv(selectedCv: CV,idUser :string ) :Observable<CV>{
+    return this.http.post<CV>(AUTH_API+'CVs/createCV?idUser='+idUser,selectedCv);
+  }
   addCompitance(compitance: Compitance, idCv: number) {
     return this.http.post<Compitance>(AUTH_API+'CVs/addCompmitance?idCV='+idCv.toString(),compitance);
   }
@@ -41,8 +44,8 @@ export class CvServiceService {
     return this.http.get<CvGlobale[]>(AUTH_API+"CVs/CVsUser?id="+id);
   }
 
-  UpdateCV(id:number,cv:any){
-    return this.http.put(AUTH_API+"CVs/update/"+id,cv);
+  UpdateCV(id:number,cv:any) :Observable<CV> {
+    return this.http.put<CV>(AUTH_API+"CVs/update/"+id,cv);
   }
 
   constructor(private http : HttpClient) { }

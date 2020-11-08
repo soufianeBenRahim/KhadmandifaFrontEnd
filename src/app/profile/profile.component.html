@@ -26,7 +26,7 @@
       <hr class="d-sm-none">
     </div>
     <div class="col-sm-8">
-      <cv-component [Cvg]='selectedCV'></cv-component>
+      <cv-component [Cvg]='selectedCV' (add)="onAddCv(cv)" (update)="onUpdateCv(cv)"></cv-component>
       <p>Liste des projets.</p>
       <app-projet [projects]='projects'></app-projet>
       <p></p>
