@@ -54,9 +54,9 @@
             class="btn btn-primary" data-toggle="modal" data-target="#mayModalloclaProjet" >
               Modifier
             </button>
-        <div *ngIf="p.emploiyees">
-          Proposition de realisation par : {{p.emploiyees.count}}
-          <p  *ngFor="let u of p.emploiyees"> {{u.username}} </p>
+        <div *ngIf="p.demandeRealisations">
+          Proposition de realisation par : {{p.demandeRealisations.count}} freelancer
+          <p  *ngFor="let u of p.demandeRealisations"> {{u.demandeur.username}} </p>
           <button type="button" (click)="onpostulationProjet(p)"  
             class="btn btn-primary btn-sm btn-block">Demande de réalisation </button>
         </div>
