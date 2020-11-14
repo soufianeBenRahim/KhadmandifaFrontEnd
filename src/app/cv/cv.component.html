@@ -7,7 +7,7 @@ data-target="#myModalEtatCivile" (click)="onAppelAddCV()">
 <app-update-cv [modeInsert]='modeInsetCV' [selectedCv]=selectedCv 
 (add)="onAddCv($event)" (update)="onUpdateCv($event)"  ></app-update-cv>
 <div class="container" *ngIf="Cvg">
-  <h2>{{Cvg.cv.designationCV}}</h2>
+  <h2>{{Cvg?.cv?.designationCV}}</h2>
   <p>Détail</p>
   <div id="accordion">
 
@@ -32,7 +32,7 @@ data-target="#myModalEtatCivile" (click)="onAppelAddCV()">
               nom :
             </label>
             <label>
-              {{Cvg.cv.nom}}
+              {{Cvg?.cv?.nom}}
             </label>
 
           </div>
@@ -41,7 +41,7 @@ data-target="#myModalEtatCivile" (click)="onAppelAddCV()">
               prenom :
             </label>
             <label>
-              {{Cvg.cv.prenom}}
+              {{Cvg?.cv?.prenom}}
             </label>
 
           </div>
@@ -50,7 +50,7 @@ data-target="#myModalEtatCivile" (click)="onAppelAddCV()">
               Etat civile :
             </label>
             <label>
-              {{Cvg.cv.etatcivile}}
+              {{Cvg?.cv?.etatcivile}}
             </label>
 
           </div>
@@ -59,7 +59,7 @@ data-target="#myModalEtatCivile" (click)="onAppelAddCV()">
               adress :
             </label>
             <label>
-              {{Cvg.cv.adress}}
+              {{Cvg?.cv?.adress}}
             </label>
 
           </div>
@@ -69,7 +69,7 @@ data-target="#myModalEtatCivile" (click)="onAppelAddCV()">
               Email :
             </label>
             <label>
-              {{Cvg.cv.email}}
+              {{Cvg?.cv?.email}}
             </label>
 
           </div>
@@ -79,7 +79,7 @@ data-target="#myModalEtatCivile" (click)="onAppelAddCV()">
               Tel :
             </label>
             <label>
-              {{Cvg.cv.tel}}
+              {{Cvg?.cv?.tel}}
             </label>
 
           </div>

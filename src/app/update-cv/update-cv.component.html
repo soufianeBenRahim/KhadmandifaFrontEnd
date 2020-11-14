@@ -1,5 +1,5 @@
 <div class="modal fade" id="myModalEtatCivile" tabindex="-1" role="dialog" 
-aria-labelledby="ModalLabelEtatCivile" aria-hidden="true">
+aria-labelledby="ModalLabelEtatCivile" aria-hidden="true" *ngIf='selectedCv'>
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -34,7 +34,7 @@ aria-labelledby="ModalLabelEtatCivile" aria-hidden="true">
 
          <div class="form-group">
             <label for="etatcivile">Etat civile:</label>
-          <select name="etatcivile" ngModel [(ngModel)]="selectedCv.etatcivile" class="form-control">
+          <select name="etatcivile" [(ngModel)]="selectedCv.etatcivile" class="form-control">
             <option value="MARIEE">Mariee</option>
             <option value="CELEBATAIRE">célébataire</option>
             <option value="AUTRE">Autre</option>
