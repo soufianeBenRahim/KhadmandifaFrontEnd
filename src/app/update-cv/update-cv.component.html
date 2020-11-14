@@ -32,10 +32,14 @@ aria-labelledby="ModalLabelEtatCivile" aria-hidden="true">
             <input type="text" class="form-control" placeholder="prenom"   name="prenom" [(ngModel)]=selectedCv.prenom>
           </div>
 
-          <div class="form-group">
-            <label for="etatcivile">Etat civile :</label>
-            <input type="text" class="form-control" placeholder="Etat civile" name="etatcivile"  [(ngModel)]=selectedCv.etatcivile>
-          </div>
+         <div class="form-group">
+            <label for="etatcivile">Etat civile:</label>
+          <select name="etatcivile" ngModel [(ngModel)]="selectedCv.etatcivile" class="form-control">
+            <option value="MARIEE">Mariee</option>
+            <option value="CELEBATAIRE">célébataire</option>
+            <option value="AUTRE">Autre</option>
+          </select>
+        </div>
 
           <div class="form-group">
             <label for="adress">Adress :</label>
