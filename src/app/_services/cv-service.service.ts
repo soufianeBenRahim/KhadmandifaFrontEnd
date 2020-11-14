@@ -11,7 +11,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class CvServiceService {
-  addCv(selectedCv: CV,idUser :string ) :Observable<CV>{
+  addCv(selectedCv: CV,idUser :number ) :Observable<CV>{
     return this.http.post<CV>(AUTH_API+'CVs/createCV?idUser='+idUser,selectedCv);
   }
   addCompitance(compitance: Compitance, idCv: number) {

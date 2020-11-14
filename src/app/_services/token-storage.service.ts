@@ -61,6 +61,14 @@ export class TokenStorageService {
   public getUser() {
     return JSON.parse(sessionStorage.getItem(USER_KEY)) as AppUser;
   }
+
+  public GetUserId(): number{
+    let user=JSON.parse(sessionStorage.getItem(USER_KEY)) as AppUser;
+    if(user==undefined){
+      throw new Error("Utilisateur non enregistré !");
+    }
+    return user[0].id;
+  }
   isTockenExpired(){
     let jwt=sessionStorage.getItem(TOKEN_KEY);
     if(jwt==null)

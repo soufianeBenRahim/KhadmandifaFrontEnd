@@ -1,6 +1,7 @@
 import { EventEmitter,Component, OnInit, Input, ViewChild, Output } from '@angular/core';
 import { CV } from '../Model/CV';
 import { CvServiceService } from '../_services/cv-service.service';
+import { TokenStorageService } from '../_services/token-storage.service';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { CvServiceService } from '../_services/cv-service.service';
 })
 export class UpdateCVComponent implements OnInit  {
 
-  constructor(private cvService : CvServiceService) { }
+  constructor(private cvService : CvServiceService,private tockenServe : TokenStorageService) { }
 
 @Output() add : EventEmitter<CV>=new EventEmitter();
 @Output() update : EventEmitter<CV>=new EventEmitter(); 
@@ -30,8 +31,13 @@ export class UpdateCVComponent implements OnInit  {
     this.closebuttonUpdateCV.nativeElement.click();
   }
 Addcv(){
+  let userId=this.tockenServe.GetUserId();
+  console.log('user from local storge : '+userId)
+  if(userId==undefined ){
+    return;
+  }
   console.log(" onAdd modeinset "+this.modeInsert)
-  this.cvService.addCv(this.selectedCv,"4").subscribe(data=>{
+  this.cvService.addCv(this.selectedCv,userId).subscribe(data=>{
     console.log(' add cv :'+data);
     this.add.emit(data);
   },erreur=>{
