@@ -5,7 +5,7 @@ data-target="#myModalEtatCivile" (click)="onAppelAddCV()">
 </button>
 <p></p>
 <app-update-cv [modeInsert]='modeInsetCV' [selectedCv]=selectedCv 
-(add)="onAddCv(cv)" (update)="onUpdateCv(cv)"  ></app-update-cv>
+(add)="onAddCv($event)" (update)="onUpdateCv($event)"  ></app-update-cv>
 <div class="container" *ngIf="Cvg">
   <h2>{{Cvg.cv.designationCV}}</h2>
   <p>Détail</p>

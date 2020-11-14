@@ -18,35 +18,38 @@ aria-labelledby="ModalLabelEtatCivile" aria-hidden="true">
       <form #fcv="ngForm" (ngSubmit)="onUpdateCV(fcv.value)" >  
         <div class="modal-body">
           <div class="form-group">
-            <label for="description">nom:</label>
-            <input type="text" class="form-control" placeholder="nom"   name="nom" [(ngModel)]=selectedCv.nom>
- 
-          </div>
-          <div class="form-group">
-            <label for="organisation">prenom:</label>
-            <input type="text" class="form-control" placeholder="prenom"   name="prenom" [(ngModel)]=selectedCv.prenom>
- 
-          </div>
-          <div class="form-group">
-            <label for="organisation">Etat civile :</label>
-            <input type="text" class="form-control" placeholder="Etat civile" name="etatcivile"  [(ngModel)]=selectedCv.etatcivile>
-          
-          </div>
-          <div class="form-group">
-            <label for="organisation">Adress :</label>
-            <input type="text" class="form-control" placeholder="Adress" name="adress" [(ngModel)]=selectedCv.adress>
-    
-          </div>
-          <div class="form-group">
-            <label for="organisation">Email :</label>
-            <input type="text" class="form-control" placeholder="Email"  name="email" [(ngModel)]=selectedCv.email>
-  
+            <label for="designationCV">Nom CV:</label>
+            <input type="text" class="form-control" placeholder="Nom CV exemple : CV informatique"   name="designationCV" [(ngModel)]=selectedCv.designationCV>
           </div>
 
           <div class="form-group">
-            <label for="organisation">Tel :</label>
+            <label for="description">nom:</label>
+            <input type="text" class="form-control" placeholder="nom"   name="nom" [(ngModel)]=selectedCv.nom>
+          </div>
+
+          <div class="form-group">
+            <label for="prenom">prenom:</label>
+            <input type="text" class="form-control" placeholder="prenom"   name="prenom" [(ngModel)]=selectedCv.prenom>
+          </div>
+
+          <div class="form-group">
+            <label for="etatcivile">Etat civile :</label>
+            <input type="text" class="form-control" placeholder="Etat civile" name="etatcivile"  [(ngModel)]=selectedCv.etatcivile>
+          </div>
+
+          <div class="form-group">
+            <label for="adress">Adress :</label>
+            <input type="text" class="form-control" placeholder="Adress" name="adress" [(ngModel)]=selectedCv.adress>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email :</label>
+            <input type="text" class="form-control" placeholder="Email"  name="email" [(ngModel)]=selectedCv.email>
+          </div>
+
+          <div class="form-group">
+            <label for="tel">Tel :</label>
             <input type="text" class="form-control" placeholder="Tel." name="tel"  [(ngModel)]=selectedCv.tel>
-         
           </div>
           
         </div>

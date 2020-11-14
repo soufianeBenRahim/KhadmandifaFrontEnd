@@ -12,21 +12,19 @@
 
       <h4>Plus de detail</h4>
       <p></p>
-      
-     
+
+
 
       <p>Liste des CVs.</p>
-      <div class="list-group" *ngIf='SelectedUser'>
+      <div *ngIf='SelectedUser'>
         <button type="button" (click)="onSelectedCvCahge(c)" *ngFor="let c of CVgs"
           class="btn btn-primary btn-sm btn-block">{{c.cv.designationCV}}</button>
       </div>
       <p></p>
 
-
-      <hr class="d-sm-none">
     </div>
     <div class="col-sm-8">
-      <cv-component [Cvg]='selectedCV' (add)="onAddCv(cv)" (update)="onUpdateCv(cv)"></cv-component>
+      <cv-component [Cvg]='selectedCV' (add)="onAddCv($event)" (update)="onUpdateCv($event)"></cv-component>
       <p>Liste des projets.</p>
       <app-projet [projects]='projects'></app-projet>
       <p></p>

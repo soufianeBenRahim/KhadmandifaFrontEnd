@@ -33,7 +33,7 @@ Addcv(){
   console.log(" onAdd modeinset "+this.modeInsert)
   this.cvService.addCv(this.selectedCv,"4").subscribe(data=>{
     console.log(' add cv :'+data);
-    this.update.emit(data);
+    this.add.emit(data);
   },erreur=>{
     console.log(' add cv  erreur :'+erreur);
   });
