@@ -55,11 +55,15 @@
               Modifier
             </button>
         <div *ngIf="p.demandeRealisations">
-          Proposition de realisation par : {{p.demandeRealisations.count}} freelancer
-          <p  *ngFor="let u of p.demandeRealisations"> {{u.demandeur.username}} </p>
+          Proposition de realisation par : 
+          <div  *ngFor="let u of p.demandeRealisations" (click)="onclickUser(u)"> {{u.demandeur.username}} </div>
+        </div>  
+        <div *ngIf="p.acceptedDemande">
+          <div (click)="onclickUser(p.acceptedDemande)"> Freelancer acceptee  : {{p.acceptedDemande.demandeur.username }}</div>    
+        </div>  
           <button type="button" (click)="onpostulationProjet(p)"  
             class="btn btn-primary btn-sm btn-block">Demande de réalisation </button>
-        </div>
+        
       </div>
       </div>
     
@@ -69,6 +73,6 @@
   </div>
 </div>
 
-<app-update-project [localID]="'mayModalloclaProjet'" [selectedProject]="curentProjet"
+<app-update-project [localID]="idFormModal" [selectedProject]="curentProjet"
 (update)="onUpdate($event)" (add)="onAdd($event)"></app-update-project>
   

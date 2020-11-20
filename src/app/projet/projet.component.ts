@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Projet } from '../Model/Projet';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../_services/user.service';
+import { ProjectServiceService } from '../project-service.service';
 
 
 
@@ -12,37 +13,48 @@ import { UserService } from '../_services/user.service';
 })
 export class ProjetComponent implements OnInit {
  
-  @Input()  projects: Projet[];
+   @Input()  projects: Projet[];
 
   
   public curentProjet=new Projet();
   constructor(private route:ActivatedRoute,
     private userService: UserService,
-    private router:Router) { }
-  modeinsert="liste";
-  idFormModal='mayModallclaProet';
+    private router:Router,private  projectservice:ProjectServiceService) { }
+    _idUser=undefined;
+    _modeinsert="liste"
+    @Input()  set modeinsert(valeur:string){
+      this._modeinsert=valeur;
+    }
+    get modeinsert() : string{
+      return this._modeinsert;
+    };
+    @Input() set iduser(valeur: string) {
+      this._idUser =valeur;
+      this.onIdUserChange(valeur);
+    }
+    get iduser(): string {
+      return this._idUser;
+    }
+  @Input() idFormModal='mayModallclaProet';
   ngOnInit() {
-      this.route.params.subscribe(params=>{
-        let modelocale=params['mode'];
- 
-        if(modelocale===undefined){ 
-          this.modeinsert="liste";
-          
-        }else{
-          this.modeinsert=modelocale;
-        }
-        if(this.projects===undefined){
-          this.userService.getPublicContent().subscribe(data=>{
-            console.log("public content "+data);
-            this.projects=data;
-            },erruer=>{
-            console.log(erruer);
-            })
-        }
-         console.log("param mode changed "+params['mode']);
-      },erruer=>{
-        console.log(erruer)
+    this.onIdUserChange(this._idUser);
+  }
+  onIdUserChange(id:string){
+    if(id){
+      this.projectservice.GetProjectsFromUser(id).subscribe(data => {
+        console.log('projet de cv ' + data)
+        this.projects = data;
+      }, err => {
+        console.log(err);
       });
+    }else{
+      this.userService.getPublicContent().subscribe(data=>{
+        console.log("public content "+data);
+        this.projects=data;
+        },erruer=>{
+        console.log(erruer);
+        })
+    }
   }
   onclickModifProject(project){
     
@@ -77,4 +89,8 @@ export class ProjetComponent implements OnInit {
     console.log(" projet a jouter par le fils :"+projet)
     this.projects.push(projet)
   };
+
+  onclickUser(acceptedDemande){
+    this.router.navigate(['/profile',acceptedDemande.demandeur.id]);
+  }
 }

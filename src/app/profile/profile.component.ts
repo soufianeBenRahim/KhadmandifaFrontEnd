@@ -48,12 +48,7 @@ export class ProfileComponent implements OnInit {
               console.log(err);
             });
             console.log('demmande des proets pour le cv');
-            this.projectservice.GetProjectsFromUser(params.id).subscribe(data => {
-              console.log('projet de cv ' + data)
-              this.projects = data;
-            }, err => {
-              console.log(err);
-            });
+          
 
           }, err => {
             console.log(err);
