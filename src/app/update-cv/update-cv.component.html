@@ -1,5 +1,5 @@
 <div class="modal fade" id="myModalEtatCivile" tabindex="-1" role="dialog" 
-aria-labelledby="ModalLabelEtatCivile" aria-hidden="true" *ngIf='selectedCv'>
+aria-labelledby="ModalLabelEtatCivile" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -19,22 +19,22 @@ aria-labelledby="ModalLabelEtatCivile" aria-hidden="true" *ngIf='selectedCv'>
         <div class="modal-body">
           <div class="form-group">
             <label for="designationCV">Nom CV:</label>
-            <input type="text" class="form-control" placeholder="Nom CV exemple : CV informatique"   name="designationCV" [(ngModel)]=selectedCv.designationCV>
+            <input type="text" class="form-control" placeholder="Nom CV exemple : CV informatique"  ngModel  name="designationCV" [value]=selectedCv?.designationCV>
           </div>
 
           <div class="form-group">
             <label for="description">nom:</label>
-            <input type="text" class="form-control" placeholder="nom"   name="nom" [(ngModel)]=selectedCv.nom>
+            <input type="text" class="form-control" placeholder="nom"  ngModel name="nom"  [value]=selectedCv?.nom>
           </div>
 
           <div class="form-group">
             <label for="prenom">prenom:</label>
-            <input type="text" class="form-control" placeholder="prenom"   name="prenom" [(ngModel)]=selectedCv.prenom>
+            <input type="text" class="form-control" placeholder="prenom" ngModel  name="prenom"  [value]=selectedCv?.prenom>
           </div>
 
          <div class="form-group">
             <label for="etatcivile">Etat civile:</label>
-          <select name="etatcivile" [(ngModel)]="selectedCv.etatcivile" class="form-control">
+          <select name="etatcivile" ngModel [value]="selectedCv?.etatcivile" class="form-control">
             <option value="MARIEE">Mariee</option>
             <option value="CELEBATAIRE">célébataire</option>
             <option value="AUTRE">Autre</option>
@@ -43,17 +43,17 @@ aria-labelledby="ModalLabelEtatCivile" aria-hidden="true" *ngIf='selectedCv'>
 
           <div class="form-group">
             <label for="adress">Adress :</label>
-            <input type="text" class="form-control" placeholder="Adress" name="adress" [(ngModel)]=selectedCv.adress>
+            <input type="text" class="form-control" placeholder="Adress" ngModel name="adress" [value]=selectedCv?.adress>
           </div>
 
           <div class="form-group">
             <label for="email">Email :</label>
-            <input type="text" class="form-control" placeholder="Email"  name="email" [(ngModel)]=selectedCv.email>
+            <input type="text" class="form-control" placeholder="Email" ngModel name="email" [value]=selectedCv?.email>
           </div>
 
           <div class="form-group">
             <label for="tel">Tel :</label>
-            <input type="text" class="form-control" placeholder="Tel." name="tel"  [(ngModel)]=selectedCv.tel>
+            <input type="text" class="form-control" placeholder="Tel." ngModel name="tel"  [value]=selectedCv?.tel>
           </div>
           
         </div>

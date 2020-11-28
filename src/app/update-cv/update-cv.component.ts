@@ -26,7 +26,7 @@ export class UpdateCVComponent implements OnInit  {
     if(this.modeInsert){
       this.Addcv(cv);
     }else{
-      this.updateCv();
+      this.updateCv(cv);
     }
     this.closebuttonUpdateCV.nativeElement.click();
   }
@@ -45,9 +45,9 @@ Addcv(cv){
   });
   
 }
-updateCv(){
+updateCv(cv){
   console.log(" onUpdateCV modeinset "+this.modeInsert)
-  this.cvService.UpdateCV(this.selectedCv.id,this.selectedCv).subscribe(data=>{
+  this.cvService.UpdateCV(this.selectedCv.id,cv).subscribe(data=>{
     console.log(' update cv :'+data);
    this.update.emit(data);
   },erreur=>{

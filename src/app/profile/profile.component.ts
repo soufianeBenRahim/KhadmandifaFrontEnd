@@ -81,6 +81,7 @@ this.cvService.DeleteCvByid(id).subscribe(data => {
   }
   onAppelAddCV() {
     this.modeInsetCV = true;
+    this.selectedCVGlobale= undefined;
   }
   
   onAppelUpdateCV() {
