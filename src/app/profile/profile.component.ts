@@ -78,6 +78,7 @@ this.cvService.DeleteCvByid(id).subscribe(data => {
 }, err => {
   console.log(err);
 });
+this.selectedCVGlobale=undefined;
   }
   onAppelAddCV() {
     this.modeInsetCV = true;

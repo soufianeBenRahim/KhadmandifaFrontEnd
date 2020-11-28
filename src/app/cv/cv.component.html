@@ -78,7 +78,7 @@
 <!-- Partie deplome -->
     <div class="card">
       <div class="card-header">
-        <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
+        <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo" >
           Deplomes
         </a>
         <button *ngIf="isLogedUserProfile===true" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalDeplome">
@@ -287,7 +287,7 @@
             <div class="card-body">
               <h5 class="card-title">Déscription : {{c.description}}</h5>
               <p class="card-text">Pourcentage :{{c.pourcentage}}</p>
-              <button (click)='onDeleteCompitance(c.id)' type="button" class="btn btn-danger">Supprimer</button>
+              <button *ngIf="isLogedUserProfile===true" (click)='onDeleteCompitance(c.id)' type="button" class="btn btn-danger">Supprimer</button>
             </div>
           </div>
         </div>
