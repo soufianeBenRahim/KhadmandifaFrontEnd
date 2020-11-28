@@ -13,14 +13,14 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   isLoggedIn = false;
   isConnectedSubscription: Subscription;
-  item
+  curentUser
   constructor(private tokenStorageService: TokenStorageService,
     private authenticationService:AuthService,
     private router:Router) { }
 
   ngOnInit() {
 
-   this.item = this.tokenStorageService.getUser()[0];
+   this.curentUser = this.tokenStorageService.getUser()[0];
 
    this.ActiveShortCut();
     this.isConnectedSubscription=this.authenticationService
@@ -29,18 +29,21 @@ export class AppComponent implements OnInit {
         if ("connected"==message.text) {
           console.log("connected");
           this.isLoggedIn =true;
+          this.curentUser = this.tokenStorageService.getUser()[0];
         } else if("desconected"==message.text){
           console.log("desconected");
           // clear messages when empty message received
           this.isLoggedIn =false;
+          this.curentUser = undefined;
+          this.ActiveShortCut();
         }
     },err=>{
       console.log(err);
     });
   }
 ActiveShortCut(){
-   console.log('ActiveShortCut on init component '+this.item);
-   if(this.item== undefined || this.item==null)
+   console.log('ActiveShortCut on init component '+this.curentUser);
+   if(!this.curentUser)
    {
     this.isLoggedIn=false;
    }else{
@@ -50,7 +53,7 @@ ActiveShortCut(){
  onclickprofile(){
    
   console.log('is loged ='+this.isLoggedIn);
-  this.router.navigate(['/profile',this.item.id]);
+  this.router.navigate(['/profile',this.curentUser.id]);
  }
   logout() {
     this.authenticationService.logOut();

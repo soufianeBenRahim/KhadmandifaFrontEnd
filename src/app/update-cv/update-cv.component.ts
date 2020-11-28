@@ -24,20 +24,20 @@ export class UpdateCVComponent implements OnInit  {
   @ViewChild('closebuttonUpdateCV',{static: false}) closebuttonUpdateCV;
   onUpdateCV(cv){
     if(this.modeInsert){
-      this.Addcv();
+      this.Addcv(cv);
     }else{
       this.updateCv();
     }
     this.closebuttonUpdateCV.nativeElement.click();
   }
-Addcv(){
+Addcv(cv){
   let userId=this.tockenServe.GetUserId();
   console.log('user from local storge : '+userId)
   if(userId==undefined ){
     return;
   }
   console.log(" onAdd modeinset "+this.modeInsert)
-  this.cvService.addCv(this.selectedCv,userId).subscribe(data=>{
+  this.cvService.addCv(cv,userId).subscribe(data=>{
     console.log(' add cv :'+data);
     this.add.emit(data);
   },erreur=>{

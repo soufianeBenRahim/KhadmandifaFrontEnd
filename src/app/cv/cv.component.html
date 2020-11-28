@@ -1,14 +1,6 @@
 
-<button type="button" class="btn btn-primary" data-toggle="modal" 
-data-target="#myModalEtatCivile" (click)="onAppelAddCV()">
-  Ajouter un CV
-</button>
-<p></p>
-<app-update-cv [modeInsert]='modeInsetCV' [selectedCv]=selectedCv 
-(add)="onAddCv($event)" (update)="onUpdateCv($event)"  ></app-update-cv>
 <div class="container" *ngIf="Cvg">
-  <h2>{{Cvg?.cv?.designationCV}}</h2>
-  <p>Détail</p>
+  
   <div id="accordion">
 
 <!-- Partie etat civile -->
@@ -17,10 +9,6 @@ data-target="#myModalEtatCivile" (click)="onAppelAddCV()">
         <a class="card-link" data-toggle="collapse" href="#collapseOne">
           Etat civile
         </a>
-        <button type="button" class="btn btn-primary" data-toggle="modal"
-         data-target="#myModalEtatCivile" (click)="onAppelUpdateCV()">
-          Modifier l'état civile
-        </button>
       </div>
       <div id="collapseOne" class="collapse show" data-parent="#accordion" *ngIf='Cvg'>
         <div class="card-body">
@@ -93,7 +81,7 @@ data-target="#myModalEtatCivile" (click)="onAppelAddCV()">
         <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
           Deplomes
         </a>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalDeplome">
+        <button *ngIf="isLogedUserProfile===true" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalDeplome">
           Ajouer un déplome
         </button>
 
@@ -102,7 +90,7 @@ data-target="#myModalEtatCivile" (click)="onAppelAddCV()">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ajouter un Déplomee</h5>
+                <h5  class="modal-title" id="exampleModalLabel">Ajouter un Déplomee</h5>
                 <button type="button" #closebuttonAddDeplome class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -145,7 +133,7 @@ data-target="#myModalEtatCivile" (click)="onAppelAddCV()">
               <h5 class="card-title">Déscription : {{d.description}}</h5>
               <h6 class="card-subtitle mb-2 text-muted">Organisation :{{d.organisataion}}</h6>
               <p class="card-text">Annee :{{d.annee}} Mois : {{d.mois}}</p>
-              <button (click)='onDeleteDeplome(d.id)' type="button" class="btn btn-danger">Supprimer</button>
+              <button *ngIf="isLogedUserProfile===true"  (click)='onDeleteDeplome(d.id)' type="button" class="btn btn-danger">Supprimer</button>
             </div>
 
           </div>
@@ -159,7 +147,7 @@ data-target="#myModalEtatCivile" (click)="onAppelAddCV()">
         <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
           Experiances
         </a>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalExperiance">
+        <button *ngIf="isLogedUserProfile===true"  type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalExperiance">
           Ajouter une experiance
         </button>
 
@@ -232,7 +220,7 @@ data-target="#myModalEtatCivile" (click)="onAppelAddCV()">
               <p class="card-text" *ngIf='!experiance.curent'>Annee fin :{{experiance.anneeFin}} Mois : {{experiance.moisFin}}</p>
               <p class="card-text" *ngIf='experiance.curent'>En cour</p>
 
-              <button (click)='onDeleteExperiance(experiance.id)' type="button"
+              <button *ngIf="isLogedUserProfile===true"  (click)='onDeleteExperiance(experiance.id)' type="button"
                 class="btn btn-danger">Supprimer</button>
             </div>
 
@@ -247,7 +235,7 @@ data-target="#myModalEtatCivile" (click)="onAppelAddCV()">
         <a class="collapsed card-link" data-toggle="collapse" href="#collapsefor">
           Compitances
         </a>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalCompitance">
+        <button *ngIf="isLogedUserProfile===true" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalCompitance">
           Ajouter une Compitance
         </button>
 

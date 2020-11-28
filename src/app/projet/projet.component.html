@@ -31,7 +31,7 @@
   
   <p></p>
   <div class="container">
-    <button type="button" class="btn btn-primary" (click)="onclickAjoutProject()" data-toggle="modal" data-target="#mayModalloclaProjet">
+    <button *ngIf="isLogedUserProfile===true" type="button" class="btn btn-primary" (click)="onclickAjoutProject()" data-toggle="modal" data-target="#mayModalloclaProjet">
       Ajouer un projet
     </button>
     <p></p>
@@ -50,7 +50,7 @@
           </div>
         </div> 
           <div class="card-footer text-muted">
-            <button type="button" class="btn btn-primary" (click)="onclickModifProject(p)" 
+            <button *ngIf="isLogedUserProfile===true" type="button" class="btn btn-primary" (click)="onclickModifProject(p)" 
             class="btn btn-primary" data-toggle="modal" data-target="#mayModalloclaProjet" >
               Modifier
             </button>
@@ -61,7 +61,7 @@
         <div *ngIf="p.acceptedDemande">
           <div (click)="onclickUser(p.acceptedDemande)"> Freelancer acceptee  : {{p.acceptedDemande.demandeur.username }}</div>    
         </div>  
-          <button type="button" (click)="onpostulationProjet(p)"  
+          <button *ngIf="isLogedUserProfile===false" type="button" (click)="onpostulationProjet(p)"  
             class="btn btn-primary btn-sm btn-block">Demande de réalisation </button>
         
       </div>

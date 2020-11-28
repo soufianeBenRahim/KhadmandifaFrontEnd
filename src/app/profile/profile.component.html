@@ -17,19 +17,53 @@
 
       <p>Liste des CVs.</p>
       <div *ngIf='SelectedUser'>
-        <button type="button" (click)="onSelectedCvCahge(c)" *ngFor="let c of CVgs"
-          class="btn btn-primary btn-sm btn-block">{{c.cv.designationCV}}</button>
+
+
+        <p></p>
+
+        <button *ngIf="isLogedUserProfile===true" type="button" class="btn btn-primary" data-toggle="modal"
+          data-target="#myModalEtatCivile" (click)="onAppelAddCV()" id="marginright">
+          Ajouter un CV
+        </button>
+        <div *ngFor="let c of CVgs">
+          <button type="button" (click)="onSelectedCvCahge(c)" class="list-group-item list-group-item-action">
+            {{c.cv.designationCV}}
+
+          </button>
+
+        </div>
+
+
+        <app-update-cv [modeInsert]='modeInsetCV' [selectedCv]='selectedCVGlobale?.cv' (add)="onAddCv($event)"
+          (update)="onUpdateCv($event)"></app-update-cv>
+
+
       </div>
       <p></p>
 
     </div>
     <div class="col-sm-8">
-      <cv-component [Cvg]='selectedCV' (add)="onAddCv($event)" (update)="onUpdateCv($event)"></cv-component>
+
+        <button class="btn btn-primary" id="marginright"
+        *ngIf="isLogedUserProfile===true && selectedCVGlobale"  data-toggle="modal"
+          data-target="#myModalEtatCivile" (click)=" onAppelUpdateCV()" id="marginright"
+        >
+          Modifier
+        </button>
+
+
+        <button class="btn btn-primary" *ngIf="selectedCVGlobale"  id="marginright" (click)=" onDeleteCV(selectedCVGlobale.cv.id)">
+          Supprimer
+        </button>
+
+
+      <h2 id="marginright">{{selectedCVGlobale?.cv?.designationCV}}</h2>
+
+        <cv-component [Cvg]='selectedCVGlobale'></cv-component>
+
       <p>Liste des projets.</p>
       <app-projet [iduser]='SelectedUser.id' [idFormModal]="'mayModalListeProjet'"></app-projet>
 
-      <p></p>
     </div>
+
   </div>
-</div>
-<p></p>

@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
-import { CvGlobale, Deplome, Experiance, Compitance, CV } from '../Model/CV';
+import { Component, OnInit, Input, ViewChild} from '@angular/core';
+import { CvGlobale, Deplome, Experiance, Compitance } from '../Model/CV';
 import { CvServiceService } from '../_services/cv-service.service';
+import { TokenStorageService } from '../_services/token-storage.service';
 
 
 @Component({
@@ -9,35 +10,33 @@ import { CvServiceService } from '../_services/cv-service.service';
   styleUrls: ['./cv.component.css']
 })
 export class CVComponent implements OnInit {
-  constructor(private cvService: CvServiceService) { }
-  @Input() Cvg: CvGlobale;
-  @Output() add : EventEmitter<CV> =new EventEmitter();
-  @Output () update : EventEmitter<CV> = new EventEmitter();
+  constructor(private cvService: CvServiceService,
+    private tockenservice : TokenStorageService) { }
+
+  isLogedUserProfile: boolean=false;
+  _cvg:CvGlobale;
+  @Input() set Cvg(cvg:CvGlobale){
+    this._cvg=cvg;
+    if(cvg && cvg.cv){
+      this.isLogedUserProfile=this.tockenservice.isLogedUser((cvg.cv.user.id));
+    }else{
+      this.isLogedUserProfile=false;
+    }
+  }
+  get Cvg():CvGlobale{
+      return this._cvg;
+  }
+  ;
 
   @ViewChild('closebuttonAddDeplome', { static: false }) closebuttonAddDeplome;
   @ViewChild('closebuttonAddExxperiance', { static: false }) closebuttonAddExxperiance;
   @ViewChild('closebuttonAddCompitance', { static: false }) closebuttonAddCompitance;
-  public selectedCv: CV;
-  modeInsetCV: boolean = undefined;
   ngOnInit() {
 
 
   }
 
-  onAppelUpdateCV() {
-    this.modeInsetCV = false;
-    this.selectedCv = this.Cvg.cv;
-  }
-  onAddCv(cv) {
-    this.add.emit(cv);
-  }
-  onUpdateCv(cv) {
-    this.update.emit(cv);
-  }
-  onAppelAddCV() {
-    this.modeInsetCV = true;
-    this.selectedCv = {} as CV;
-  }
+
 
   onDeleteDeplome(id: string) {
     this.cvService.delteDeplome(id).subscribe(data => {

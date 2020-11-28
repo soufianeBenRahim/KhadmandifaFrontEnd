@@ -1,3 +1,4 @@
+import { AppUser } from './User';
 
 export interface CV{
     id : number;
@@ -8,6 +9,7 @@ export interface CV{
     adress : String;
     email : String ;
     Tel : String;
+    user : AppUser;
 }
 export interface Experiance
     {

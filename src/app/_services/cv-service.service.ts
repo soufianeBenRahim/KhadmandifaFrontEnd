@@ -11,6 +11,9 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class CvServiceService {
+  DeleteCvByid(id: string) {
+    return this.http.delete<CV>(AUTH_API+'CVs/'+id+'/delete');
+  }
   addCv(selectedCv: CV,idUser :number ) :Observable<CV>{
     return this.http.post<CV>(AUTH_API+'CVs/createCV?idUser='+idUser,selectedCv);
   }

@@ -65,7 +65,7 @@ export class TokenStorageService {
   public GetUserId(): number{
     let user=JSON.parse(sessionStorage.getItem(USER_KEY)) as AppUser;
     if(user==undefined){
-      throw new Error("Utilisateur non enregistré !");
+      undefined;
     }
     return user[0].id;
   }
@@ -80,5 +80,17 @@ export class TokenStorageService {
     //  return jwthelper.isTokenExpired(jwt);
     }
   }
-
+  isLogedUser(id: number) : boolean{
+    let user=JSON.parse(sessionStorage.getItem(USER_KEY)) as AppUser;
+    if(user==undefined){
+      return false;
+    }else{
+      if(user[0].id==id){
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+  }
 }

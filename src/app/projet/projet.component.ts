@@ -3,6 +3,7 @@ import { Projet } from '../Model/Projet';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../_services/user.service';
 import { ProjectServiceService } from '../project-service.service';
+import { TokenStorageService } from '../_services/token-storage.service';
 
 
 
@@ -17,10 +18,13 @@ export class ProjetComponent implements OnInit {
 
   
   public curentProjet=new Projet();
+  isLogedUserProfile:boolean=false;
   constructor(private route:ActivatedRoute,
     private userService: UserService,
-    private router:Router,private  projectservice:ProjectServiceService) { }
-    _idUser=undefined;
+    private router:Router,
+    private  projectservice:ProjectServiceService,
+    private tockeService:TokenStorageService) { }
+    _idUser : number=undefined;
     _modeinsert="liste"
     @Input()  set modeinsert(valeur:string){
       this._modeinsert=valeur;
@@ -28,19 +32,20 @@ export class ProjetComponent implements OnInit {
     get modeinsert() : string{
       return this._modeinsert;
     };
-    @Input() set iduser(valeur: string) {
+    @Input() set iduser(valeur: number) {
       this._idUser =valeur;
       this.onIdUserChange(valeur);
     }
-    get iduser(): string {
+    get iduser(): number {
       return this._idUser;
     }
   @Input() idFormModal='mayModallclaProet';
   ngOnInit() {
     this.onIdUserChange(this._idUser);
   }
-  onIdUserChange(id:string){
+  onIdUserChange(id:number){
     if(id){
+      this.isLogedUserProfile=this.tockeService.isLogedUser(id);
       this.projectservice.GetProjectsFromUser(id).subscribe(data => {
         console.log('projet de cv ' + data)
         this.projects = data;
