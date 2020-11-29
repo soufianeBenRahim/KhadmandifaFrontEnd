@@ -9,6 +9,13 @@ const USER_KEY = 'auth-user';
   providedIn: 'root'
 })
 export class TokenStorageService {
+  getLogedtypeuser(): string {
+    let user=JSON.parse(sessionStorage.getItem(USER_KEY)) as AppUser;
+    if(user==undefined){
+      undefined;
+    }
+    return user[0].typeuser;
+  }
   private roles:Array<any>=null;
   constructor() { }
 

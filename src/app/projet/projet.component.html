@@ -31,8 +31,11 @@
   
   <p></p>
   <div class="container">
-    <button *ngIf="isLogedUserProfile===true" type="button" class="btn btn-primary" (click)="onclickAjoutProject()" data-toggle="modal" data-target="#mayModalloclaProjet">
-      Ajouer un projet
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" 
+    data-target="#mayModallocalProjet" *ngIf="isLogedUserProfile===true && typeuser==='EUR'"
+     (click)="onclickAjoutProject()">
+    Ajouer un projet 
     </button>
     <p></p>
     <div class="row row-cols-1 row-cols-md-2" >
@@ -50,8 +53,8 @@
           </div>
         </div> 
           <div class="card-footer text-muted">
-            <button *ngIf="isLogedUserProfile===true" type="button" class="btn btn-primary" (click)="onclickModifProject(p)" 
-            class="btn btn-primary" data-toggle="modal" data-target="#mayModalloclaProjet" >
+            <button *ngIf="isLogedUserProfile===true && typeuser==='EUR'" type="button" class="btn btn-primary" (click)="onclickModifProject(p)" 
+            class="btn btn-primary" data-toggle="modal" data-target="#mayModallocalProjet" >
               Modifier
             </button>
         <div *ngIf="p.demandeRealisations">
@@ -73,6 +76,6 @@
   </div>
 </div>
 
-<app-update-project [localID]="idFormModal" [selectedProject]="curentProjet"
+<app-update-project [selectedProject]="curentProjet"
 (update)="onUpdate($event)" (add)="onAdd($event)"></app-update-project>
   

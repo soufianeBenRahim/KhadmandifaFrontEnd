@@ -22,6 +22,7 @@ export class ProfileComponent implements OnInit {
   projects: Projet[];
   isLogedUserProfile:boolean=false;
   modeInsetCV: boolean = undefined;
+
   constructor(
     private route: ActivatedRoute,
     private userserv: UserService,

@@ -9,7 +9,8 @@
       <h6>Email:
         {{SelectedUser.email}}
       </h6>
-
+      <h6 *ngIf="SelectedUser && SelectedUser.typeuser==='EUR'">Type: Emploiyeur </h6>
+      <h6 *ngIf="SelectedUser && SelectedUser.typeuser==='EE'">Type: Emploiyee </h6>
       <h4>Plus de detail</h4>
       <p></p>
 
@@ -21,7 +22,7 @@
 
         <p></p>
 
-        <button *ngIf="isLogedUserProfile===true" type="button" class="btn btn-primary" data-toggle="modal"
+        <button *ngIf="isLogedUserProfile===true && SelectedUser &&  SelectedUser.typeuser==='EE'" type="button" class="btn btn-primary" data-toggle="modal"
           data-target="#myModalEtatCivile" (click)="onAppelAddCV()" id="marginright">
           Ajouter un CV
         </button>
@@ -45,7 +46,7 @@
     <div class="col-sm-8">
 
         <button class="btn btn-primary" id="marginright"
-        *ngIf="isLogedUserProfile===true && selectedCVGlobale"  data-toggle="modal"
+        *ngIf="isLogedUserProfile===true && selectedCVGlobale && SelectedUser.typeuser==='EE'"  data-toggle="modal"
           data-target="#myModalEtatCivile" (click)=" onAppelUpdateCV()" id="marginright"
         >
           Modifier
@@ -63,7 +64,7 @@
         <cv-component [Cvg]='selectedCVGlobale'></cv-component>
 
       <p>Liste des projets.</p>
-      <app-projet [iduser]='SelectedUser.id' [idFormModal]="'mayModalListeProjet'"></app-projet>
+      <app-projet [iduser]='SelectedUser.id' ></app-projet>
 
     </div>
 

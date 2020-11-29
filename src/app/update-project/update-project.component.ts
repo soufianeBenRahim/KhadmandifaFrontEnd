@@ -2,6 +2,7 @@ import { Component, OnInit, Output,EventEmitter, Input, ViewChild } from '@angul
 
 import { Projet } from '../Model/Projet';
 import { ProjectServiceService } from '../project-service.service';
+import { TokenStorageService } from '../_services/token-storage.service';
 
 @Component({
   selector: 'app-update-project',
@@ -11,8 +12,8 @@ import { ProjectServiceService } from '../project-service.service';
 
 export class UpdateProjectComponent implements OnInit {
   @ViewChild('closebuttonModofoerprojet',{static: false}) closebuttonModofoerprojet;
-  constructor(private projetService : ProjectServiceService) { }
-  @Input() localID:string;
+  constructor(private projetService : ProjectServiceService
+    ,private tockeService:TokenStorageService) { }
   @Input() selectedProject:Projet;
   @Output() update: EventEmitter<Projet> = new EventEmitter();
   @Output() add: EventEmitter<Projet> = new EventEmitter();
@@ -55,8 +56,8 @@ updateProjet(proj){
 );
 }
   saveNewProjet(proj: Projet){
-
-    this.projetService.addProjet(proj,4).subscribe(
+let iduser=this.tockeService.GetUserId();
+    this.projetService.addProjet(proj,iduser).subscribe(
             (result: Projet) => {
                if(result.id){
                 this.add.emit(result);

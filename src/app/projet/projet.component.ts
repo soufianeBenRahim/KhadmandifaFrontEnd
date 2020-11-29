@@ -39,13 +39,14 @@ export class ProjetComponent implements OnInit {
     get iduser(): number {
       return this._idUser;
     }
-  @Input() idFormModal='mayModallclaProet';
+typeuser : string;
   ngOnInit() {
     this.onIdUserChange(this._idUser);
   }
   onIdUserChange(id:number){
     if(id){
       this.isLogedUserProfile=this.tockeService.isLogedUser(id);
+this.typeuser=this.tockeService.getLogedtypeuser();
       this.projectservice.GetProjectsFromUser(id).subscribe(data => {
         console.log('projet de cv ' + data)
         this.projects = data;
@@ -70,6 +71,7 @@ export class ProjetComponent implements OnInit {
   onclickAjoutProject(){
     this.curentProjet= new Projet();
     console.log(this.curentProjet)
+
    // this.router.navigate(['/project','fiche']);
   }
   oncanelpdate(){
