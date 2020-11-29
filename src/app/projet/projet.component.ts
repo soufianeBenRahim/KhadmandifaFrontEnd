@@ -101,4 +101,8 @@ export class ProjetComponent implements OnInit {
   onclickUser(acceptedDemande){
     this.router.navigate(['/profile',acceptedDemande.demandeur.id]);
   }
+
+  onpostulationProjet(p){
+    
+  }
 }

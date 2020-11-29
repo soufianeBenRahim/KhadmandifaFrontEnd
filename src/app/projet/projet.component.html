@@ -59,7 +59,13 @@
             </button>
         <div *ngIf="p.demandeRealisations">
           Proposition de realisation par : 
-          <div  *ngFor="let u of p.demandeRealisations" (click)="onclickUser(u)"> {{u.demandeur.username}} </div>
+          <div *ngFor="let u of p.demandeRealisations">
+            <button type="button" (click)="onclickUser(u)" class="list-group-item list-group-item-action">
+              {{u.demandeur.username}}
+            </button>
+  
+          </div>
+
         </div>  
         <div *ngIf="p.acceptedDemande">
           <div (click)="onclickUser(p.acceptedDemande)"> Freelancer acceptee  : {{p.acceptedDemande.demandeur.username }}</div>    
