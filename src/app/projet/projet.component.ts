@@ -39,14 +39,15 @@ export class ProjetComponent implements OnInit {
     get iduser(): number {
       return this._idUser;
     }
-typeuser : string;
+    typeuser : string;
   ngOnInit() {
     this.onIdUserChange(this._idUser);
+    this.typeuser=this.tockeService.getLogedtypeuser();
   }
   onIdUserChange(id:number){
     if(id){
       this.isLogedUserProfile=this.tockeService.isLogedUser(id);
-this.typeuser=this.tockeService.getLogedtypeuser();
+
       this.projectservice.GetProjectsFromUser(id).subscribe(data => {
         console.log('projet de cv ' + data)
         this.projects = data;
