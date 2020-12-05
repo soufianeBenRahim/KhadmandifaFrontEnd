@@ -1,0 +1,35 @@
+
+  <div class="card">
+
+
+  
+    <h4 *ngIf="modeinsert===true" class="card-header">Proposer une demmande de réalisation</h4>
+    <h4 *ngIf="modeinsert===false" class="card-header">Modifier la demmande de réalisation</h4>
+
+            
+            <div class="card-body">
+                
+            
+            
+        <form #fdemande="ngForm" (ngSubmit)="onUpdatedemmande(fdemande.value)">
+            <div class="form-group">
+              <label for="description">Détail :</label>
+              <input type="text" class="form-control" placeholder="" name="detailDemmande"  ngModel [value]="demande?.detailDemmande">
+            </div>
+            <div class="form-group">
+              <label for="organisation">Proposition:</label>
+              <input type="number" class="form-control" placeholder="" name="proposition"   ngModel [value]="demande?.proposition">
+            </div>
+            <div class="form-group" *ngIf="listeCVs">
+                <label for="cvs">CV:</label>
+              <select name="cvs" ngModel [value]="demande.id" class="form-control">
+                <option ngFor="let cvg of listeCVs" value="cvg.cv.id">{{cvg.cv.designationCV}}</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Sauvgarder</button>
+        </form>
+    </div>
+    </div>
+
+  
+

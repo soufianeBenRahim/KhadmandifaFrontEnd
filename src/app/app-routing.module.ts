@@ -10,6 +10,7 @@ import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { AuthGuard } from './_helpers/Auth.guard ';
 import { CVComponent } from './cv/cv.component';
 import { ProjetComponent } from './projet/projet.component';
+import { UpdateDemandeRealisationComponent } from './update-demande-realisation/update-demande-realisation.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent , canActivate : [AuthGuard]  },
@@ -20,6 +21,8 @@ const routes: Routes = [
   { path: 'user', component: BoardUserComponent , canActivate : [AuthGuard]},
   { path: 'admin', component: BoardAdminComponent , canActivate : [AuthGuard]},
   { path: 'project/:mode', component: ProjetComponent },
+  { path: 'demande/add/:idProjet', component: UpdateDemandeRealisationComponent },
+  { path: 'demande/:id', component: UpdateDemandeRealisationComponent },
   { path: '**', redirectTo: 'home', pathMatch: 'full'},
   { path: '', component: HomeComponent},
 ];

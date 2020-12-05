@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders,  HttpClient } from '@angular/common/http';
-import { Projet } from './Model/Projet';
+import { DemandeRealisation, Projet } from './Model/Projet';
 import { Observable } from 'rxjs';
 
 const AUTH_API = 'http://localhost:8080/';
@@ -12,6 +12,12 @@ const httpOptions = {
 })
 
 export class ProjectServiceService {
+  addDemmandeToProjet(fdemande: DemandeRealisation, idProjet: any,iduser:any) {
+    return this.http.post<DemandeRealisation>(AUTH_API+'addDemandeToProject?idProjet='+idProjet+'&idUser='+iduser,fdemande);
+  }
+  getdemandeByid(id: any) {
+    return this.http.get<DemandeRealisation>(AUTH_API+'getdemandeByidr?id='+id);
+  }
   GetProjectsFromUser(id: any): Observable<Projet[]> {
     return this.http.get<Projet[]>(AUTH_API+'getprojectsuser?id='+id);
   }

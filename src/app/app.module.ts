@@ -25,6 +25,7 @@ import { EtatCivilComponent } from './etat-civil/etat-civil.component';
 import { ProjetComponent } from './projet/projet.component';
 import { UpdateProjectComponent } from './update-project/update-project.component';
 import { UpdateCVComponent } from './update-cv/update-cv.component';
+import { UpdateDemandeRealisationComponent } from './update-demande-realisation/update-demande-realisation.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { UpdateCVComponent } from './update-cv/update-cv.component';
     ProjetComponent,
     UpdateProjectComponent,
     UpdateCVComponent,
+    UpdateDemandeRealisationComponent,
   ],
   imports: [
     BrowserModule,

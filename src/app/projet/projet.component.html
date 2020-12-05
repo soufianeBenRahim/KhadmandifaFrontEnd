@@ -71,7 +71,7 @@
           <div (click)="onclickUser(p.acceptedDemande)"> Freelancer acceptee  : {{p.acceptedDemande.demandeur.username }}</div>    
         </div>  
 
-          <button *ngIf="isLogedUserProfile===false && typeuser==='EE'" type="button" (click)="onpostulationProjet(p)"  
+          <button *ngIf="showDemandeInProject(p.demandeRealisations)" type="button" (click)="onpostulationProjet(p)"  
             class="btn btn-primary btn-sm btn-block">Demande de réalisation </button>
         
       </div>

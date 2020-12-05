@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Projet } from '../Model/Projet';
+import { DemandeRealisation, Projet } from '../Model/Projet';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../_services/user.service';
 import { ProjectServiceService } from '../project-service.service';
@@ -19,7 +19,7 @@ export class ProjetComponent implements OnInit {
   
   public curentProjet=new Projet();
   isLogedUserProfile:boolean=false;
-  constructor(private route:ActivatedRoute,
+  constructor(private activateRoute:ActivatedRoute,
     private userService: UserService,
     private router:Router,
     private  projectservice:ProjectServiceService,
@@ -103,6 +103,21 @@ export class ProjetComponent implements OnInit {
   }
 
   onpostulationProjet(p){
-    
+this.router.navigate(['demande/add',p.id])
+  }
+
+  public showDemandeInProject(demandes :DemandeRealisation[]) : boolean{
+    return this.isLogedUserProfile===false && this.typeuser==='EE' && this.isConnctedUserInDemmande(demandes)!=true
+  }
+  public isConnctedUserInDemmande(demandes :DemandeRealisation[]) : boolean{
+    if(!demandes) return false;
+    let id_user = this.tockeService.GetUserId();
+    for (let index = 0; index < demandes.length; index++) {
+      const element = demandes[index];
+      if(id_user==element.demandeur.id) 
+      return true;
+    }
+
+    return false;
   }
 }

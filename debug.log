@@ -10,3 +10,5 @@
 [1129/223632.696:ERROR:crash_report_database_win.cc(498)] failed to stat report
 [1129/223632.700:ERROR:filesystem_win.cc(116)] GetFileAttributes C:\Users\soufiane\AppData\Local\Temp\.profile\Crashpad\reports\24b230bf-697e-4dd5-aca3-2ce2f740d6e2.dmp: Le fichier spécifié est introuvable. (0x2)
 [1129/223632.701:ERROR:directory_reader_win.cc(43)] FindFirstFile: Le chemin d’accès spécifié est introuvable. (0x3)
+[1130/233416.832:ERROR:directory_reader_win.cc(43)] FindFirstFile: Le chemin d’accès spécifié est introuvable. (0x3)
+[1202/195432.258:ERROR:directory_reader_win.cc(43)] FindFirstFile: Le chemin d’accès spécifié est introuvable. (0x3)
