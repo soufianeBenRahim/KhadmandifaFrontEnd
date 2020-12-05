@@ -1,3 +1,4 @@
+import { CV } from './CV';
 import { Projet } from './Projet';
 import { AppUser } from './User';
 
@@ -7,4 +8,5 @@ export interface DemandeRealisation {
     projet: Projet;
     demandeur: AppUser;
     proposition : number;
+    cv : CV;
 }

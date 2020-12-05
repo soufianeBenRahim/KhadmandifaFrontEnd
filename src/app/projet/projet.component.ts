@@ -1,9 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DemandeRealisation, Projet } from '../Model/Projet';
+import {  Projet } from '../Model/Projet';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../_services/user.service';
 import { ProjectServiceService } from '../project-service.service';
 import { TokenStorageService } from '../_services/token-storage.service';
+import { DemandeRealisation } from '../Model/DemandeRealisation';
 
 
 

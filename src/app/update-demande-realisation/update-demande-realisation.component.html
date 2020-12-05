@@ -22,8 +22,8 @@
             </div>
             <div class="form-group" *ngIf="listeCVs">
                 <label for="cvs">CV:</label>
-              <select name="cvs" ngModel [value]="demande.id" class="form-control">
-                <option ngFor="let cvg of listeCVs" value="cvg.cv.id">{{cvg.cv.designationCV}}</option>
+              <select name="cvs" ngModel [value]="idcv" class="form-control">
+                <option *ngFor="let cvg of listeCVs" [value]="cvg.cv.id">{{cvg.cv.designationCV}}</option>
               </select>
             </div>
             <button type="submit" class="btn btn-primary">Sauvgarder</button>

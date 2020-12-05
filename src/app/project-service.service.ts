@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders,  HttpClient } from '@angular/common/http';
-import { DemandeRealisation, Projet } from './Model/Projet';
+import { Projet } from './Model/Projet';
 import { Observable } from 'rxjs';
+import { DemandeRealisation } from './Model/DemandeRealisation';
 
 const AUTH_API = 'http://localhost:8080/';
 const httpOptions = {
@@ -12,8 +13,8 @@ const httpOptions = {
 })
 
 export class ProjectServiceService {
-  addDemmandeToProjet(fdemande: DemandeRealisation, idProjet: any,iduser:any) {
-    return this.http.post<DemandeRealisation>(AUTH_API+'addDemandeToProject?idProjet='+idProjet+'&idUser='+iduser,fdemande);
+  addDemmandeToProjet(fdemande: DemandeRealisation, idProjet: any,iduser:any,idcv:any) {
+    return this.http.post<DemandeRealisation>(AUTH_API+'addDemandeToProject?idProjet='+idProjet+'&idUser='+iduser+'&idcv='+idcv,fdemande);
   }
   getdemandeByid(id: any) {
     return this.http.get<DemandeRealisation>(AUTH_API+'getdemandeByidr?id='+id);

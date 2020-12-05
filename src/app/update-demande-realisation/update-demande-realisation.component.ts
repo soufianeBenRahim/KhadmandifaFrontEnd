@@ -1,8 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { error } from 'protractor';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Component,  OnInit } from '@angular/core';
+import { CVComponent } from '../cv/cv.component';
 import { CvGlobale } from '../Model/CV';
-import { DemandeRealisation } from '../Model/Projet';
+import { DemandeRealisation } from '../Model/DemandeRealisation';
 import { ProjectServiceService } from '../project-service.service';
 import { CvServiceService } from '../_services/cv-service.service';
 import { TokenStorageService } from '../_services/token-storage.service';
@@ -17,11 +17,13 @@ export class UpdateDemandeRealisationComponent implements OnInit {
   constructor(private cvService: CvServiceService,
     private tockeService: TokenStorageService,
     private route: ActivatedRoute,
-    private projectservice: ProjectServiceService) { }
+    private projectservice: ProjectServiceService,
+    private router : Router) { }
   demande: DemandeRealisation;
   modeinsert: boolean = false;
   listeCVs: CvGlobale[];
   idProjet;
+  idcv;
   ngOnInit() {
     this.route.params.subscribe(
       params => {
@@ -37,7 +39,7 @@ export class UpdateDemandeRealisationComponent implements OnInit {
               console.log(erreur);
             });
         } else {
-          this.demande = new DemandeRealisation();
+          this.demande = { } as DemandeRealisation;
           this.modeinsert = true;
         }
       }, erreur => {
@@ -58,9 +60,12 @@ export class UpdateDemandeRealisationComponent implements OnInit {
   onUpdatedemmande(fdemande) {
     if(this.modeinsert===true){
       let iduser=this.tockeService.GetUserId();
-      this.projectservice.addDemmandeToProjet(fdemande, this.idProjet,iduser)
+      this.demande.detailDemmande=fdemande.detailDemmande;
+      this.demande.proposition=fdemande.proposition;
+      this.projectservice.addDemmandeToProjet(fdemande,this.idProjet ,iduser,fdemande.cvs)
         .subscribe(demande => {
           console.log(demande);
+          this.router.navigate(['/project','liste']);
         }, erreur => {
           console.log(erreur)
         });
