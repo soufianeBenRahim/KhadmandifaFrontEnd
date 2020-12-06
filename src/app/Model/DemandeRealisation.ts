@@ -2,7 +2,7 @@ import { CV } from './CV';
 import { Projet } from './Projet';
 import { AppUser } from './User';
 
-export interface DemandeRealisation {
+export class DemandeRealisation {
     id: number;
     detailDemmande: string;
     projet: Projet;

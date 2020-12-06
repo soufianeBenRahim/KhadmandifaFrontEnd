@@ -62,7 +62,7 @@ export class UpdateDemandeRealisationComponent implements OnInit {
       let iduser=this.tockeService.GetUserId();
       this.demande.detailDemmande=fdemande.detailDemmande;
       this.demande.proposition=fdemande.proposition;
-      this.projectservice.addDemmandeToProjet(fdemande,this.idProjet ,iduser)
+      this.projectservice.addDemmandeToProjet(fdemande,this.idProjet ,iduser,fdemande.idcv)
         .subscribe(demande => {
           console.log(demande);
           this.router.navigate(['/project','liste']);

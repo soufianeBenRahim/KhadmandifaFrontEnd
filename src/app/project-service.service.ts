@@ -13,8 +13,9 @@ const httpOptions = {
 })
 
 export class ProjectServiceService {
-  addDemmandeToProjet(fdemande: DemandeRealisation, idProjet: any,iduser:any) {
-    return this.http.post<DemandeRealisation>(AUTH_API+'addDemandeToProject?idProjet='+idProjet+'&idUser='+iduser,fdemande);
+  addDemmandeToProjet(fdemande: DemandeRealisation, idProjet: any,iduser:any,idcv :any) {
+    let queryidCv = (idcv)?'idcv='+idcv:'';
+    return this.http.post<DemandeRealisation>(AUTH_API+'addDemandeToProject?idProjet='+idProjet+'&idUser='+iduser+'&'+queryidCv,fdemande);
   }
   getdemandeByid(id: any) {
     return this.http.get<DemandeRealisation>(AUTH_API+'getdemandeByidr?id='+id);
