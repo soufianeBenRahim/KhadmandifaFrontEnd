@@ -53,7 +53,7 @@ ActiveShortCut(){
  onclickprofile(){
    
   console.log('is loged ='+this.isLoggedIn);
-  this.router.navigate(['/profile',this.curentUser.id]);
+  this.router.navigate(['/profile',this.curentUser.id,'view']);
  }
   logout() {
     this.authenticationService.logOut();

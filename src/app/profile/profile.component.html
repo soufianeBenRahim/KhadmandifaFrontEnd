@@ -1,4 +1,8 @@
 <div class="container" *ngIf='SelectedUser' style="margin-top:30px ">
+  <button *ngIf="_typeappel==='accept'" type="button" class="btn btn-primary"
+   (click)="onacceptuser()">
+  Accepter
+</button>
   <div class="row">
     <div class="col-sm-4">
 

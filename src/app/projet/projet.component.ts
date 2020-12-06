@@ -5,6 +5,7 @@ import { UserService } from '../_services/user.service';
 import { ProjectServiceService } from '../project-service.service';
 import { TokenStorageService } from '../_services/token-storage.service';
 import { DemandeRealisation } from '../Model/DemandeRealisation';
+import { ThrowStmt } from '@angular/compiler';
 
 
 
@@ -99,8 +100,15 @@ export class ProjetComponent implements OnInit {
     this.projects.push(projet)
   };
 
-  onclickUser(acceptedDemande){
-    this.router.navigate(['/profile',acceptedDemande.demandeur.id]);
+  onclickUser(acceptedDemande,projet){
+    let iduser=this.tockeService.GetUserId();
+    if(iduser && this.typeuser==='EUR' && iduser===projet.emploiyeur.id 
+    && !projet.acceptedDemande){
+      this.router.navigate(['/profile',acceptedDemande.demandeur.id,'accept',projet.id,acceptedDemande.id]);
+    }else{
+      this.router.navigate(['/profile',acceptedDemande.demandeur.id,'view']);
+    }
+
   }
 
   onpostulationProjet(p){

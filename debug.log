@@ -15,3 +15,9 @@
 [1205/134958.817:ERROR:process_info.cc(359)] UncheckedAllocate
 [1205/134959.430:ERROR:process_info.cc(359)] UncheckedAllocate
 [1205/143955.885:ERROR:directory_reader_win.cc(43)] FindFirstFile: Le chemin d’accès spécifié est introuvable. (0x3)
+[1206/065900.156:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1206/065900.157:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1206/071400.175:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1206/071400.177:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1206/072858.524:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1206/072858.526:ERROR:crash_report_database_win.cc(498)] failed to stat report
