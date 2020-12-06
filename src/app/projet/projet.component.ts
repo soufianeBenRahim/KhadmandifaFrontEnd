@@ -115,8 +115,10 @@ export class ProjetComponent implements OnInit {
 this.router.navigate(['demande/add',p.id])
   }
 
-  public showDemandeInProject(demandes :DemandeRealisation[]) : boolean{
-    return this.isLogedUserProfile===false && this.typeuser==='EE' && this.isConnctedUserInDemmande(demandes)!=true
+  public showDemandeInProject(p: Projet) : boolean{
+    return this.isLogedUserProfile===false && this.typeuser==='EE' 
+    && this.isConnctedUserInDemmande(p.demandeRealisations)!==true
+    && !p.acceptedDemande
   }
   public isConnctedUserInDemmande(demandes :DemandeRealisation[]) : boolean{
     if(!demandes) return false;

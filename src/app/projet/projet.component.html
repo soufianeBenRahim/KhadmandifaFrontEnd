@@ -68,11 +68,21 @@
 
         </div>  
         <div *ngIf="p.acceptedDemande">
-          <div (click)="onclickUser(p.acceptedDemande,p)"> Freelancer acceptee  : {{p.acceptedDemande.demandeur.username }}</div>    
+          <p>
+            Freelancer acceptee  :
+          </p>
+          <button type="button" (click)="onclickUser(p.acceptedDemande,p)" class="list-group-item list-group-item-action">
+             {{p.acceptedDemande.demandeur.username }}
+          </button>
+ 
         </div>  
 
-          <button *ngIf="showDemandeInProject(p.demandeRealisations)" type="button" (click)="onpostulationProjet(p)"  
-            class="btn btn-primary btn-sm btn-block">Demande de réalisation </button>
+          <button *ngIf="showDemandeInProject(p)" type="button" 
+          (click)="onpostulationProjet(p)"  
+            class="btn btn-primary btn-sm btn-block"
+            >
+            Demande de réalisation 
+          </button>
         
       </div>
       </div>

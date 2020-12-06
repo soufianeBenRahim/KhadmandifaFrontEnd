@@ -13,7 +13,7 @@ const httpOptions = {
 })
 
 export class ProjectServiceService {
-  addDemmandeToProjet(fdemande: DemandeRealisation, idProjet: any,iduser:any,idcv:any) {
+  addDemmandeToProjet(fdemande: DemandeRealisation, idProjet: any,iduser:any) {
     return this.http.post<DemandeRealisation>(AUTH_API+'addDemandeToProject?idProjet='+idProjet+'&idUser='+iduser,fdemande);
   }
   getdemandeByid(id: any) {
